@@ -1,0 +1,28 @@
+# ============================================
+# INDMoney Weekly Pulse — .dockerignore
+# ============================================
+
+# Secrets — never include in image
+.env
+
+# Version control
+.git/
+.gitignore
+
+# Data outputs (generated at runtime)
+data/
+
+# Documentation (not needed in container)
+*.md
+architecture/
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/

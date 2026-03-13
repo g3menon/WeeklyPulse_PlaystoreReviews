@@ -1,0 +1,33 @@
+# ============================================
+# INDMoney Weekly Pulse — .gitignore
+# ============================================
+
+# Environment variables (NEVER commit)
+.env
+
+# Runtime data outputs
+data/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log
