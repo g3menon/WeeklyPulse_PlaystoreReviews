@@ -4,7 +4,7 @@
 
 **Discover recurring product themes and classify every review using Groq LLaMA 3**
 
-[![Phase](https://img.shields.io/badge/Phase-4%20of%2010-blue)]()
+[![Phase](https://img.shields.io/badge/Phase-4%20of%209-blue)]()
 [![LLM](https://img.shields.io/badge/LLM-Groq%20LLaMA%203-F55036?logo=meta&logoColor=white)]()
 [![Calls](https://img.shields.io/badge/LLM%20Calls-2--3-orange)]()
 [![Status](https://img.shields.io/badge/Status-Architecture-yellow)]()

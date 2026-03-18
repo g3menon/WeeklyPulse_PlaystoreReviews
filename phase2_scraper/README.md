@@ -4,7 +4,7 @@
 
 **Fetch and filter the latest INDMoney reviews from Google Play Store**
 
-[![Phase](https://img.shields.io/badge/Phase-2%20of%2010-blue)]()
+[![Phase](https://img.shields.io/badge/Phase-2%20of%209-blue)]()
 [![LLM](https://img.shields.io/badge/LLM-None-grey)]()
 [![Source](https://img.shields.io/badge/Source-Google%20Play%20Store-414141?logo=googleplay&logoColor=white)]()
 [![Status](https://img.shields.io/badge/Status-Architecture-yellow)]()

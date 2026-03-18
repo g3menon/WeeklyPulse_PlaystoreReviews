@@ -4,7 +4,7 @@
 
 **Format the pulse as a professional HTML email and deliver via Gmail SMTP**
 
-[![Phase](https://img.shields.io/badge/Phase-6%20of%2010-blue)]()
+[![Phase](https://img.shields.io/badge/Phase-6%20of%209-blue)]()
 [![LLM](https://img.shields.io/badge/LLM-Gemini%202.5%20Flash-4285F4?logo=google&logoColor=white)]()
 [![Calls](https://img.shields.io/badge/LLM%20Calls-1-green)]()
 [![Transport](https://img.shields.io/badge/SMTP-Gmail-EA4335?logo=gmail&logoColor=white)]()

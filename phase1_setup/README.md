@@ -4,7 +4,7 @@
 
 **The foundation layer: environment variables, LLM clients, and logging**
 
-[![Phase](https://img.shields.io/badge/Phase-1%20of%2010-blue)]()
+[![Phase](https://img.shields.io/badge/Phase-1%20of%209-blue)]()
 [![LLM](https://img.shields.io/badge/LLM-None-grey)]()
 [![Status](https://img.shields.io/badge/Status-Architecture-yellow)]()
 

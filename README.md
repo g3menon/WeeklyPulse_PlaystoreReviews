@@ -5,17 +5,16 @@
 **AI-powered Play Store review insights — pipeline, dashboard, and email — delivered automatically every week**
 
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)](https://python.org)
-[![Groq](https://img.shields.io/badge/LLM-Groq%20LLaMA%203-F55036?logo=meta&logoColor=white)](https://groq.com)
+[![Groq](https://img.shields.io/badge/LLM-Groq%20LLaMA%203.3-F55036?logo=meta&logoColor=white)](https://groq.com)
 [![Gemini](https://img.shields.io/badge/LLM-Gemini%202.5%20Flash-4285F4?logo=google&logoColor=white)](https://ai.google.dev)
-[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![React](https://img.shields.io/badge/Frontend-React%2018-61DAFB?logo=react&logoColor=black)](https://react.dev)
+[![Streamlit](https://img.shields.io/badge/Dashboard-Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io)
 [![Docker](https://img.shields.io/badge/Docker-Containerised-2496ED?logo=docker&logoColor=white)](https://docker.com)
 [![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/features/actions)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 <br/>
 
-*Converts hundreds of raw user reviews into a one-page executive pulse + interactive dashboard — automatically, every week.*
+*Converts hundreds of raw user reviews into a one-page executive pulse + interactive Streamlit dashboard — automatically, every week.*
 
 </div>
 
@@ -35,16 +34,15 @@ Product teams at fintech companies like INDMoney receive **hundreds of Play Stor
 
 ### ✅ The Solution
 
-A **full-stack AI platform** comprising:
+An **AI-powered insights platform** comprising:
 
 1. **📥 Scrapes** recent Play Store reviews automatically
 2. **🧹 Cleans** data and removes PII for privacy compliance
-3. **🏷️ Discovers themes** using Groq LLaMA 3 (fast, cheap classification)
+3. **🏷️ Discovers themes** using Groq LLaMA 3.3 (fast, cheap classification)
 4. **📊 Generates a leadership-ready pulse** using Gemini 2.5 Flash (quality summaries)
 5. **📧 Emails** a polished one-page report to stakeholders
-6. **🖥️ Serves a REST API** via FastAPI for integrations
-7. **🎨 Displays a React dashboard** with dark-mode, glassmorphism, and Recharts
-8. **⏰ Runs weekly** via GitHub Actions — zero manual effort
+6. **📊 Displays a Streamlit dashboard** with charts, filters, and interactive data
+7. **⏰ Runs weekly** via GitHub Actions — zero manual effort
 
 ### 📈 The Impact
 
@@ -55,7 +53,7 @@ A **full-stack AI platform** comprising:
 | Leadership visibility | Ad-hoc, delayed | **Weekly email + live dashboard** |
 | Actionable insights | Rare | **3 action ideas every week** |
 | PII risk | High (raw reviews shared) | **Zero** (stripped in Phase 3) |
-| Accessibility | CLI-only | **Web dashboard for anyone** |
+| Dashboard access | None | **Streamlit Cloud (free, shareable)** |
 
 ---
 
@@ -72,20 +70,20 @@ A **full-stack AI platform** comprising:
   └──────────┘  └──────────┘  └──────────┘  └──────────┘  └──────────┘
                                                   │
                                                   ▼
-                                            ┌──────────┐  ┌──────────┐
-                                            │ Phase 7  │─▶│ Phase 8  │──▶ 🌐
-                                            │ Backend  │  │ Frontend │
-                                            │ (FastAPI)│  │(Dashboard│
-                                            └──────────┘  └──────────┘
+                                          ┌──────────────┐
+                                          │   Phase 7    │──▶ 🌐
+                                          │  Streamlit   │
+                                          │  Dashboard   │
+                                          └──────────────┘
 ```
 
-> **Phase 1** handles setup · **Phase 9** containerises with Docker · **Phase 10** schedules via GitHub Actions
+> **Phase 1** handles setup · **Phase 8** containerises with Docker · **Phase 9** schedules via GitHub Actions
 
 📄 **Full architecture →** [`architecture/architecture.md`](architecture/architecture.md)
 
 ---
 
-## 📁 10-Phase Project Structure
+## 📁 9-Phase Project Structure
 
 ```
 WeeklyPulse_PlaystoreReviews/
@@ -98,15 +96,16 @@ WeeklyPulse_PlaystoreReviews/
 ├── phase4_themes/                       # 🏷️ Groq-powered theme generation
 ├── phase5_pulse/                        # 📊 Gemini 2.5 Flash pulse summary
 ├── phase6_email/                        # 📧 Email drafting & SMTP delivery
-├── phase7_backend/                      # 🖥️ FastAPI REST API
-├── phase8_frontend/                     # 🎨 React dashboard (Vite)
-├── phase9_docker/                       # 🐳 Docker containerisation
-├── phase10_scheduler/                   # ⏰ GitHub Actions cron scheduler
+├── phase7_dashboard/                    # 📊 Streamlit interactive dashboard
+├── phase8_docker/                       # 🐳 Docker containerisation
+├── phase9_scheduler/                    # ⏰ GitHub Actions cron scheduler
 │
 ├── architecture/                        # 📐 System architecture docs
+├── tests/                               # 🧪 Test suites
 ├── data/                                # 📂 Runtime outputs (gitignored)
 │
 ├── .github/workflows/weekly_pulse.yml   # ⏰ Cron workflow
+├── .streamlit/config.toml               # 🎨 Streamlit theme
 ├── Dockerfile                           # 🐳 Container definition
 ├── .env.example                         # 🔐 Env var template
 ├── requirements.txt                     # 📦 Python dependencies
@@ -145,13 +144,8 @@ python main.py
 ### 4. Launch the Dashboard
 
 ```bash
-# Start the backend
-uvicorn phase7_backend.app:app --port 8000
-
-# In another terminal — start the React dev server
-cd phase8_frontend
-npm install && npm run dev
-# Opens at http://localhost:5173 (proxies API to :8000)
+streamlit run phase7_dashboard/app.py
+# Opens at http://localhost:8501
 ```
 
 ---
@@ -176,10 +170,20 @@ docker build -t weekly-pulse .
 # Pipeline mode (scrape → email)
 docker run --env-file .env weekly-pulse
 
-# Server mode (dashboard)
-docker run --env-file .env -p 8000:8000 weekly-pulse \
-  uvicorn phase7_backend.app:app --host 0.0.0.0 --port 8000
+# Dashboard mode
+docker run --env-file .env -p 8501:8501 weekly-pulse \
+  streamlit run phase7_dashboard/app.py --server.port 8501 --server.address 0.0.0.0
 ```
+
+---
+
+## 🌐 Deploy on Streamlit Cloud (Free)
+
+1. Push repo to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Select your repo → `phase7_dashboard/app.py`
+4. Add secrets in Streamlit Cloud dashboard
+5. Deploy!
 
 ---
 
@@ -201,8 +205,8 @@ Add your secrets in **GitHub → Settings → Secrets → Actions**.
 
 | Task | Provider | Model | Why |
 |------|----------|-------|-----|
-| Theme Discovery | **Groq** | LLaMA 3 70B | Fast inference, cheap for classification |
-| Review Classification | **Groq** | LLaMA 3 70B | Batch processing, low latency |
+| Theme Discovery | **Groq** | LLaMA 3.3 70B | Fast inference, cheap for classification |
+| Review Classification | **Groq** | LLaMA 3.3 70B | Batch processing, low latency |
 | Pulse Summarisation | **Gemini** | **2.5 Flash** | Superior reasoning, structured JSON, leadership-grade prose |
 | Email Polish | **Gemini** | **2.5 Flash** | Professional language quality |
 
@@ -213,7 +217,7 @@ Add your secrets in **GitHub → Settings → Secrets → Actions**.
 ## 📬 Example Weekly Pulse Output
 
 ```
-Subject: 📊 INDMoney Weekly User Pulse — Mar 06–13, 2026
+Subject: 📊 INDMoney Weekly User Pulse — Mar 13–18, 2026
 
 Hi Team,
 
@@ -264,13 +268,13 @@ Weekly Pulse Bot
 | Language | Python 3.11 |
 | Review Scraping | `google-play-scraper` |
 | Data Cleaning | Regex + custom PII filters |
-| Theme Generation | Groq API (LLaMA 3 70B) |
+| Theme Generation | Groq API (LLaMA 3.3 70B) |
 | Summarisation | **Google Gemini 2.5 Flash** |
-| Backend API | FastAPI + Uvicorn |
-| Frontend | React 18, Vite, Recharts, CSS (dark mode) |
+| Dashboard | **Streamlit** + Plotly |
 | Email Delivery | Gmail SMTP + Jinja2 |
 | Containerisation | Docker |
 | Scheduling | GitHub Actions (cron) |
+| Deployment | **Streamlit Cloud** (free) |
 
 ---
 

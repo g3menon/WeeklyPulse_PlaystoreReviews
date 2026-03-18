@@ -4,7 +4,7 @@
 
 **Strip personal information, normalise text, and prepare reviews for AI processing**
 
-[![Phase](https://img.shields.io/badge/Phase-3%20of%2010-blue)]()
+[![Phase](https://img.shields.io/badge/Phase-3%20of%209-blue)]()
 [![LLM](https://img.shields.io/badge/LLM-None-grey)]()
 [![Privacy](https://img.shields.io/badge/Privacy-PII%20Removed-green)]()
 [![Status](https://img.shields.io/badge/Status-Architecture-yellow)]()

@@ -1,10 +1,10 @@
 <div align="center">
 
-# ⏰ Phase 10 — GitHub Actions Scheduler
+# ⏰ Phase 9 — GitHub Actions Scheduler
 
 **Automate the weekly pulse pipeline with a cron-based GitHub Actions workflow**
 
-[![Phase](https://img.shields.io/badge/Phase-10%20of%2010-blue)]()
+[![Phase](https://img.shields.io/badge/Phase-9%20of%209-blue)]()
 [![CI](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)]()
 [![Schedule](https://img.shields.io/badge/Cron-Every%20Monday%209AM%20UTC-green)]()
 [![Status](https://img.shields.io/badge/Status-Architecture-yellow)]()
@@ -46,7 +46,7 @@ flowchart TD
 ## 📁 Files
 
 ```
-phase10_scheduler/
+phase9_scheduler/
 └── README.md                           # This file (instructions)
 
 # The actual workflow file:

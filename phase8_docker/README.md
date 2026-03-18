@@ -1,10 +1,10 @@
 <div align="center">
 
-# 🐳 Phase 9 — Docker Containerisation
+# 🐳 Phase 8 — Docker Containerisation
 
-**Package the entire platform (pipeline + backend + frontend) into a portable Docker container**
+**Package the entire platform (pipeline + Streamlit dashboard) into a portable Docker container**
 
-[![Phase](https://img.shields.io/badge/Phase-9%20of%2010-blue)]()
+[![Phase](https://img.shields.io/badge/Phase-8%20of%209-blue)]()
 [![Docker](https://img.shields.io/badge/Docker-Containerised-2496ED?logo=docker&logoColor=white)]()
 [![Base](https://img.shields.io/badge/Base-python%3A3.11--slim-3776AB?logo=python&logoColor=white)]()
 [![Status](https://img.shields.io/badge/Status-Architecture-yellow)]()
@@ -18,7 +18,7 @@
 | | |
 |---|---|
 | **❌ Problem** | "Works on my machine" — Python version mismatches, missing packages, OS-specific issues make deployment painful |
-| **✅ Solution** | A single Dockerfile builds a self-contained image with all dependencies, pipeline code, backend API, and frontend dashboard |
+| **✅ Solution** | A single Dockerfile builds a self-contained image with all dependencies, pipeline code, and Streamlit dashboard |
 | **📈 Impact** | Run anywhere (laptop, server, CI/CD, cloud) with one command: `docker run --env-file .env weekly-pulse` |
 
 ---
@@ -34,7 +34,7 @@ flowchart TD
 
     subgraph "Runtime Modes"
         F["Pipeline Mode\npython main.py"] --> G["📧 Email Sent"]
-        H["Server Mode\nuvicorn app:app"] --> I["🌐 Dashboard Live"]
+        H["Dashboard Mode\nstreamlit run app.py"] --> I["🌐 Dashboard Live"]
     end
 
     E --> F
@@ -50,7 +50,7 @@ flowchart TD
 ## 📁 Files
 
 ```
-phase9_docker/
+phase8_docker/
 └── README.md               # This file (instructions only)
 
 # The actual Docker files live at the repo root:
@@ -80,11 +80,10 @@ COPY . .
 # Create output directory
 RUN mkdir -p /app/data
 
-# Default port
-ENV PORT=8000
+ENV PORT=8501
 EXPOSE ${PORT}
 
-# Default: run pipeline then start server
+# Default: run pipeline then start dashboard
 CMD ["python", "main.py"]
 ```
 
@@ -104,8 +103,8 @@ venv/
 .venv/
 .vscode/
 .idea/
-phase9_docker/
-phase10_scheduler/
+phase8_docker/
+phase9_scheduler/
 ```
 
 ---
@@ -124,18 +123,18 @@ docker build -t weekly-pulse .
 docker run --env-file .env weekly-pulse
 ```
 
-### Run — Server Mode (dashboard)
+### Run — Dashboard Mode (Streamlit)
 
 ```bash
-docker run --env-file .env -p 8000:8000 weekly-pulse \
-  uvicorn phase7_backend.app:app --host 0.0.0.0 --port 8000
+docker run --env-file .env -p 8501:8501 weekly-pulse \
+  streamlit run phase7_dashboard/app.py --server.port 8501 --server.address 0.0.0.0
 ```
 
-### Run — Full Platform (pipeline + server)
+### Run — Full Platform (pipeline + dashboard)
 
 ```bash
-docker run --env-file .env -p 8000:8000 weekly-pulse \
-  sh -c "python main.py && uvicorn phase7_backend.app:app --host 0.0.0.0 --port 8000"
+docker run --env-file .env -p 8501:8501 weekly-pulse \
+  sh -c "python main.py && streamlit run phase7_dashboard/app.py --server.port 8501 --server.address 0.0.0.0"
 ```
 
 ### Mount Data Locally
@@ -165,7 +164,7 @@ docker run --env-file .env -v $(pwd)/data:/app/data weekly-pulse
 |----------|----------|
 | Build failure | Check `requirements.txt` syntax and network |
 | Missing env vars | Pipeline fails fast with clear error on startup |
-| Port conflict | Use `-p <other>:8000` to remap |
+| Port conflict | Use `-p <other>:8501` to remap |
 | Permission errors | Ensure `data/` is writable in container |
 
 ---
@@ -174,6 +173,6 @@ docker run --env-file .env -v $(pwd)/data:/app/data weekly-pulse
 
 - [ ] `docker build` completes without errors
 - [ ] Pipeline mode runs and sends email
-- [ ] Server mode serves dashboard at port 8000
+- [ ] Dashboard mode serves Streamlit at port 8501
 - [ ] Image size < 300MB
 - [ ] No secrets baked into the image (verified with `docker history`)
