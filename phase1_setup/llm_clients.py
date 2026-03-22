@@ -54,7 +54,7 @@ class GroqClient:
             system_prompt: System instruction (sets the LLM's role)
             temperature:   Creativity control (0.0–1.0)
             max_tokens:    Maximum response length
-            model:         Model identifier (default: llama3-70b-8192)
+            model:         Model identifier (default: llama-3.3-70b-versatile)
 
         Returns:
             The assistant's response text

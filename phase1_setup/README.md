@@ -6,7 +6,7 @@
 
 [![Phase](https://img.shields.io/badge/Phase-1%20of%209-blue)]()
 [![LLM](https://img.shields.io/badge/LLM-None-grey)]()
-[![Status](https://img.shields.io/badge/Status-Architecture-yellow)]()
+[![Status](https://img.shields.io/badge/Status-Complete-brightgreen)]()
 
 </div>
 
@@ -17,7 +17,7 @@
 | | |
 |---|---|
 | **❌ Problem** | API keys scattered across files, no structured logging, duplicated client initialisation |
-| **✅ Solution** | Centralised config loader, shared LLM client wrappers, structured JSON logging |
+| **✅ Solution** | Centralised config loader, shared LLM client wrappers, structured coloured logging |
 | **📈 Impact** | Single source of truth for all settings — one `.env` file controls everything |
 
 ---
@@ -51,11 +51,11 @@ flowchart LR
 ## 📤 Outputs
 
 | Output | Type | Used By |
-|--------|------|---------|
-| `config` object | Python module | All phases |
+|--------|------|---------| 
+| `settings` object | Python module | All phases |
 | `groq_client` | Groq API client | Phase 4 |
 | `gemini_client` | Gemini API client | Phase 5, 6 |
-| `logger` | Structured logger | All phases |
+| `get_logger()` | Logger factory | All phases |
 
 ---
 
@@ -64,10 +64,10 @@ flowchart LR
 ```
 phase1_setup/
 ├── README.md           # This file
-├── __init__.py         # Package exports
+├── __init__.py         # Package exports (lazy LLM import)
 ├── config.py           # Env var loading & constants
 ├── llm_clients.py      # Groq + Gemini client wrappers
-└── logger.py           # Structured logging setup
+└── logger.py           # Structured coloured logging
 ```
 
 ---
@@ -80,7 +80,7 @@ phase1_setup/
 | `GEMINI_API_KEY` | string | ✅ | — |
 | `EMAIL_ADDRESS` | string | ✅ | — |
 | `EMAIL_APP_PASSWORD` | string | ✅ | — |
-| `PORT` | int | ❌ | `8000` |
+| `PORT` | int | ❌ | `8501` |
 
 ---
 
@@ -90,6 +90,9 @@ phase1_setup/
 # This phase is imported by other phases, not run directly.
 # To verify config loads correctly:
 python -c "from phase1_setup.config import settings; print(settings)"
+
+# To run all Phase 1 tests:
+python tests/test_phase1.py
 ```
 
 ---
@@ -99,14 +102,14 @@ python -c "from phase1_setup.config import settings; print(settings)"
 | Package | Purpose |
 |---------|---------|
 | `python-dotenv` | Load `.env` files |
-| `groq` | Groq API client |
+| `groq` | Groq API client (LLaMA 3.3 70B) |
 | `google-genai` | Google Gemini 2.5 Flash client |
 
 ---
 
 ## ✅ Success Criteria
 
-- [ ] All env vars load without error
-- [ ] Groq client initialises and can list models
-- [ ] Gemini 2.5 Flash client initialises and can generate text
-- [ ] Logger outputs structured JSON to console
+- [x] All env vars load without error
+- [x] Groq client initialises and responds (6/6 tests pass)
+- [x] Gemini 2.5 Flash client initialises and generates text
+- [x] Logger outputs structured coloured output to console

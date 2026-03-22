@@ -40,6 +40,9 @@ The system is a **9-phase, linear Python pipeline + Streamlit dashboard** that c
 └──────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
+> 📏 **Governance:** All phases are bound by the rules defined in [`rules.md`](../rules.md).
+> Rules are segregated by phase and cover data quality, PII handling, cost control, and deployment hygiene.
+
 ---
 
 ## 2. Phase Map
@@ -115,8 +118,9 @@ Responsibility:
 ```
 
 **Folder:** `phase1_setup/`
-**Files:** `config.py`, `llm_clients.py`, `logger.py`
-**Status:** ✅ Implemented & Tested (6/6 tests pass)
+**Files:** `config.py`, `llm_clients.py`, `logger.py`, `__init__.py`
+**Pipeline entry:** `main.py` (repo root) — scaffolded, phases uncomment as built
+**Status:** ✅ Implemented & Tested (6/6 tests pass) · README updated · All rules P1.1–P1.3 met
 
 ---
 
@@ -281,6 +285,60 @@ Flow:
   SMTP_SSL("smtp.gmail.com", 465)
   Authenticate → Send → Done
 ```
+
+**Email UI One-Pager Design:**
+
+```
+┌─────────────────────────────────────────────────────┐
+│  ┌───────────────────────────────────────────────┐  │
+│  │  GRADIENT HEADER (Purple→Pink)               │  │
+│  │  📊 Weekly Pulse · INDMoney User Sentiment    │  │
+│  │  [ 📅 Mar 13–18, 2026 ]                       │  │
+│  └───────────────────────────────────────────────┘  │
+│                                                     │
+│  ┌─────────┬─────────┬─────────┐  ← Stats Bar      │
+│  │   187   │  ★ 3.4  │    5    │                    │
+│  │ Reviews │ Avg Rtg │ Themes  │                    │
+│  └─────────┴─────────┴─────────┘                    │
+│                                                     │
+│  Hi Team, Here's your weekly pulse...               │
+│                                                     │
+│  ── 🏷️ TOP THEMES ──────────────────────────────    │
+│  ┌ Theme Card 1 (gradient bg, left border accent) ┐ │
+│  │ 1. App Performance  [47 reviews · ★2.3]        │ │
+│  │ Users report frequent crashes during...         │ │
+│  └────────────────────────────────────────────────┘ │
+│  ┌ Theme Card 2 ┐  ┌ Theme Card 3 ┐                │
+│                                                     │
+│  ── 💬 WHAT USERS ARE SAYING ────────────────────   │
+│  ┌ Quote Card (frosted glass bg) ┐                  │
+│  │ ❝ "The app freezes every time..." ★2            │ │
+│  │   [App Performance]                              │ │
+│  └───────────────────────────────┘                  │
+│                                                     │
+│  ── 🚀 SUGGESTED ACTIONS ────────────────────────   │
+│  ┌ ● Action 1 — Optimise cold-start latency     ┐  │
+│  ┌ ● Action 2 — Add fund comparison feature     ┐  │
+│  ┌ ● Action 3 — Implement SLA-based escalation  ┐  │
+│                                                     │
+│  ── 📊 RATING DISTRIBUTION ──────────────────────   │
+│  ★5  ████████░░░░░░  32%                            │
+│  ★4  ██████░░░░░░░░  24%                            │
+│  ★3  ████░░░░░░░░░░  16%                            │
+│  ★2  ██████████░░░░  12%                            │
+│  ★1  ████████░░░░░░  16%                            │
+│                                                     │
+│  ── FOOTER ──────────────────────────────────────   │
+│  Best regards, Weekly Pulse Bot 🤖                   │
+│  Auto-generated · PII removed · Groq + Gemini       │
+└─────────────────────────────────────────────────────┘
+```
+
+**Template:** Self-contained HTML with all inline styles (no external CSS/JS).
+Uses dark theme (#0f0f23 bg), gradient accents, and is compatible with
+Gmail, Outlook, and Apple Mail.
+
+**Applicable Rules:** P6.1–P6.6 (see [`rules.md`](../rules.md))
 
 **Folder:** `phase6_email/`
 **Files:** `email_sender.py`, `templates/email_template.html`
@@ -495,6 +553,8 @@ WeeklyPulse_PlaystoreReviews/
 │
 ├── architecture/
 │   └── architecture.md                  # This document
+│
+├── rules.md                                 # 📏 Rules & guardrails (48 rules, per-phase)
 │
 ├── tests/
 │   └── test_phase1.py                   # Phase 1 test suite
