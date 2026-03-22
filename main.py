@@ -36,10 +36,10 @@ def main() -> None:
     # ------------------------------------------------------------------
     # Phase 3 — Clean & Strip PII
     # ------------------------------------------------------------------
-    # from phase3_cleaning.cleaner import clean_reviews
-    # logger.info("Phase 3: Cleaning reviews & removing PII...")
-    # clean_reviews()
-    # logger.info("Phase 3: Complete")
+    from phase3_cleaning.cleaner import clean_reviews
+    logger.info("Phase 3: Cleaning reviews & removing PII...")
+    clean_reviews()
+    logger.info("Phase 3: Complete")
 
     # ------------------------------------------------------------------
     # Phase 4 — Theme Generation & Classification (Groq)

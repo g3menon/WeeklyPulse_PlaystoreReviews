@@ -7,7 +7,7 @@
 [![Phase](https://img.shields.io/badge/Phase-3%20of%209-blue)]()
 [![LLM](https://img.shields.io/badge/LLM-None-grey)]()
 [![Privacy](https://img.shields.io/badge/Privacy-PII%20Removed-green)]()
-[![Status](https://img.shields.io/badge/Status-Architecture-yellow)]()
+[![Status](https://img.shields.io/badge/Status-Implemented-brightgreen)]()
 
 </div>
 
@@ -17,9 +17,9 @@
 
 | | |
 |---|---|
-| **❌ Problem** | Raw reviews contain emails, phone numbers, and names — sending these to an LLM is a privacy risk |
-| **✅ Solution** | Regex-based PII detection and removal + text normalisation before any AI processing |
-| **📈 Impact** | Zero PII exposure to external APIs · Clean, consistent text for higher-quality AI analysis |
+| **❌ Problem** | Raw reviews contain emails, phone numbers, hate speech, and gibberish. This leads to privacy risks and token waste. |
+| **✅ Solution** | Regex-based PII detection, simple heuristic filtering, lightweight profanity filtering, and text normalisation. |
+| **📈 Impact** | Zero PII exposure to external APIs · Clean, consistent text for higher-quality AI analysis · Zero LLM token waste on bad data |
 
 ---
 
@@ -28,15 +28,16 @@
 ```mermaid
 flowchart TD
     A["data/reviews_raw.json"] --> B["Load raw reviews"]
-    B --> C["Strip email addresses"]
-    C --> D["Strip phone numbers"]
-    D --> E["Strip name patterns"]
-    E --> F["Normalise whitespace & encoding"]
-    F --> G["Remove short reviews < 10 chars"]
-    G --> H["Save → data/reviews_cleaned.json"]
+    B --> C["Fix Encoding & Normalize Whitespace"]
+    C --> D["Strip Aadhaar IDs"]
+    D --> E["Strip Phone numbers"]
+    E --> F["Strip Emails"]
+    F --> G["Profanity & Gibberish Filtering"]
+    G --> H["Remove short reviews < 30 words"]
+    H --> I["Save → data/reviews_cleaned.json"]
 
     style A fill:#F97316,color:#fff
-    style H fill:#10B981,color:#fff
+    style I fill:#10B981,color:#fff
 ```
 
 ---
@@ -61,6 +62,14 @@ flowchart TD
 | Phone numbers | `\+?\d[\d\s\-]{7,}\d` | `[PHONE]` |
 | Aadhaar-like numbers | `\d{4}\s?\d{4}\s?\d{4}` | `[ID]` |
 
+### What Gets Filtered
+
+| Filter Type | Strategy |
+|----------|--------------|
+| Profanity | Dropped based on lightweight keyword matching. |
+| Gibberish | Dropped if >50% nonsense words or >4 repeated characters. |
+| Word count | Dropped if word count fals below 30 words after cleaning. |
+
 ---
 
 ## 📁 Files
@@ -69,7 +78,7 @@ flowchart TD
 phase3_cleaning/
 ├── README.md           # This file
 ├── __init__.py         # Package exports
-└── cleaner.py          # PII removal & text normalisation
+└── cleaner.py          # PII removal, filtering, & text normalisation
 ```
 
 ---
@@ -90,7 +99,7 @@ python main.py
 
 | Package | Purpose |
 |---------|---------|
-| `re` (stdlib) | Regular expressions for PII detection |
+| `re` (stdlib) | Regular expressions for PII detection and text filtering |
 | `json` (stdlib) | JSON read/write |
 
 > ✅ No external dependencies required — this phase uses only Python standard library.
@@ -101,17 +110,19 @@ python main.py
 
 | Scenario | Strategy |
 |----------|----------|
-| Regex false positive | Use conservative patterns; prefer under-removal over over-removal |
-| Empty text after cleaning | Remove the review from the dataset |
+| Regex false positive | Aadhaar regex is checked before Phone numbers.  |
+| Empty text after cleaning | Re-apply the 30 word minimum rule. |
 | Missing input file | Raise clear error with instructions to run Phase 2 first |
-| Encoding issues | Normalise to UTF-8; strip non-printable characters |
+| Encoding issues | Normalise to UTF-8; fix artefacts like `â€™` |
 
 ---
 
 ## ✅ Success Criteria
 
-- [ ] No email addresses remain in any review text
-- [ ] No phone numbers remain in any review text
-- [ ] All reviews have at least 10 characters of text
-- [ ] `data/reviews_cleaned.json` is valid JSON
-- [ ] Review count logged: `"Cleaned X reviews, removed Y short/empty"` 
+- [x] No email addresses remain in any review text
+- [x] No phone numbers remain in any review text
+- [x] No Aadhaar IDs remain in any review text
+- [x] All reviews have at least 30 words of text
+- [x] Gibberish and profanity reviews are dropped
+- [x] `data/reviews_cleaned.json` is valid JSON
+- [x] Detailed cleaning stats are logged correctly

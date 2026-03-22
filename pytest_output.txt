@@ -1,0 +1,49 @@
+C:\Users\Gayathri\AppData\Local\Programs\Python\Python311\Lib\site-packages\pytest_asyncio\plugin.py:247: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts =============================
+platform win32 -- Python 3.11.0, pytest-8.3.3, pluggy-1.6.0 -- C:\Users\Gayathri\AppData\Local\Programs\Python\Python311\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Gayathri\.gemini\antigravity\scratch\GenAIBootcamp_Milestone2\WeeklyPulse_PlaystoreReviews
+plugins: anyio-4.12.1, asyncio-1.3.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 2 items
+
+tests/test_phase3.py::test_clean_reviews FAILED                          [ 50%]
+tests/test_phase3.py::test_missing_raw_file PASSED                       [100%]
+
+================================== FAILURES ===================================
+_____________________________ test_clean_reviews ______________________________
+
+mock_raw_data = [{'date': '2023-10-01', 'rating': 5, 'review_id': 'r1', 'text': 'This is a great app with lots of nice features. apple... the app ’ and the new UI.', ...}, {'date': '2023-10-05', 'rating': 3, 'review_id': 'r5', 'text': 'Too short.', ...}]
+tmp_path = WindowsPath('C:/Users/Gayathri/AppData/Local/Temp/pytest-of-Gayathri/pytest-7/test_clean_reviews0')
+
+    def test_clean_reviews(mock_raw_data, tmp_path):
+        raw_path = tmp_path / "raw.json"
+        cleaned_path = tmp_path / "cleaned.json"
+    
+        with open(raw_path, "w", encoding="utf-8") as f:
+            json.dump(mock_raw_data, f)
+    
+        with patch("phase3_cleaning.cleaner.REVIEWS_RAW_PATH", raw_path), \
+             patch("phase3_cleaning.cleaner.REVIEWS_CLEANED_PATH", cleaned_path):
+    
+            results = cleaner.clean_reviews()
+    
+            assert len(results) == 2
+    
+            # r1 is valid but requires PII stripping
+            assert "[EMAIL]" in results[0]["text"]
+            assert "[PHONE]" in results[0]["text"]
+>           assert "[ID]" in results[0]["text"]
+E           AssertionError: assert '[ID]' in 'This is a great app with lots of nice features. apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple My email is [EMAIL] and phone is [PHONE]. Also ID [PHONE].'
+
+tests\test_phase3.py:67: AssertionError
+---------------------------- Captured stdout call -----------------------------
+\x1b[32m[2026-03-22 18:43:49] [INFO    ] [phase3_cleaning     ] Phase 3 \u2014 Starting data cleaning and PII removal\x1b[0m\n\x1b[32m[2026-03-22 18:43:49] [INFO    ] [phase3_cleaning     ]   Loaded       : 5 raw reviews\x1b[0m\n\x1b[32m[2026-03-22 18:43:49] [INFO    ] [phase3_cleaning     ]   Cleaning Stats:\x1b[0m\n\x1b[32m[2026-03-22 18:43:49] [INFO    ] [phase3_cleaning     ]     Total input      : 5\x1b[0m\n\x1b[32m[2026-03-22 18:43:49] [INFO    ] [phase3_cleaning     ]     PII reviews      : 1\x1b[0m\n\x1b[32m[2026-03-22 18:43:49] [INFO    ] [phase3_cleaning     ]     Profanity dropped: 1\x1b[0m\n\x1b[32m[2026-03-22 18:43:49] [INFO    ] [phase3_cleaning     ]     Gibberish dropped: 1\x1b[0m\n\x1b[32m[2026-03-22 18:43:49] [INFO    ] [phase3_cleaning     ]     Short dropped    : 1\x1b[0m\n\x1b[32m[2026-03-22 18:43:49] [INFO    ] [phase3_cleaning     ]     Final output     : 2\x1b[0m\n\x1b[32m[2026-03-22 18:43:49] [INFO    ] [phase3_cleaning     ] Phase 3 \u2014 Complete. Saved 2 reviews \u2192 C:\\Users\\Gayathri\\AppData\\Local\\Temp\\pytest-of-Gayathri\\pytest-7\\test_clean_reviews0\\cleaned.json\x1b[0m
+------------------------------ Captured log call ------------------------------
+INFO     phase3_cleaning:cleaner.py:40 Phase 3 \u2014 Starting data cleaning and PII removal\nINFO     phase3_cleaning:cleaner.py:49   Loaded       : 5 raw reviews\nINFO     phase3_cleaning:cleaner.py:102   Cleaning Stats:\nINFO     phase3_cleaning:cleaner.py:103     Total input      : 5\nINFO     phase3_cleaning:cleaner.py:104     PII reviews      : 1\nINFO     phase3_cleaning:cleaner.py:105     Profanity dropped: 1\nINFO     phase3_cleaning:cleaner.py:106     Gibberish dropped: 1\nINFO     phase3_cleaning:cleaner.py:107     Short dropped    : 1\nINFO     phase3_cleaning:cleaner.py:108     Final output     : 2\nINFO     phase3_cleaning:cleaner.py:111 Phase 3 \u2014 Complete. Saved 2 reviews \u2192 C:\\Users\\Gayathri\\AppData\\Local\\Temp\\pytest-of-Gayathri\\pytest-7\\test_clean_reviews0\\cleaned.json
+=========================== short test summary info ===========================
+FAILED tests/test_phase3.py::test_clean_reviews - AssertionError: assert '[ID...
+========================= 1 failed, 1 passed in 0.11s =========================
