@@ -39,8 +39,12 @@
 | P2.2 | **Cap at `MAX_REVIEWS` (200).** Even if more reviews are available, never send more than 200 to the pipeline. | Token budget control — keeps total run ≤ 30K tokens. |
 | P2.3 | **Deduplicate by `review_id`.** Reject any review that has already been seen within the current scrape window. | Prevents inflated counts and wasted LLM context. |
 | P2.4 | **Date-window filter.** Only retain reviews from the last `DATE_WINDOW_WEEKS` (8 weeks). Older reviews are irrelevant to a *weekly* pulse. | Freshness and relevance. |
-| P2.5 | **Do not collect PII or personal information.** If the scraper encounters profile pictures, usernames, or email addresses from the Play Store API response, drop those fields. Only retain: `review_id`, `rating`, `title`, `text`, `date`, `thumbs_up`. | Minimise PII surface area from the start. |
+| P2.5 | **Do not collect PII or personal information.** If the scraper encounters profile pictures, usernames, or email addresses from the Play Store API response, drop those fields. Only retain: `review_id`, `rating`, `text`, `date`, `thumbs_up`. Note: `title` should not be preserved. | Minimise PII surface area from the start. |
 | P2.6 | **Respect rate limits.** Use exponential backoff (max 3 retries) if the Play Store returns HTTP 429 or connection errors. | Avoid IP bans and maintain reliability. |
+| P2.7 | **English reviews only.** Data got from google playscrape should not include sentences in languages that are not english. The sentences should be written in English and be comprehendable. | The LLM operates best on comprehendable English text. |
+| P2.8 | **Prioritise helpful reviews.** If `thumbs_up` in the data refers to helpfulness of the review, prioritise reviews that have higher number of `thumbs_up`. | More helpful reviews carry more signal for the pulse summary. |
+| P2.9 | **Do not store the title.** The title should not be included in the saved data. | Re-iteration of rule P2.5 for explicitness to save storage and context window. |
+| P2.10 | **Remove emojis.** Remove all emojis from the review text. | Emojis add noise to the dataset and can interfere with LLM comprehension and formatting. |
 
 ---
 

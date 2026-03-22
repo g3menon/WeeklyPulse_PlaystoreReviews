@@ -28,10 +28,10 @@ def main() -> None:
     # ------------------------------------------------------------------
     # Phase 2 — Scrape Play Store Reviews
     # ------------------------------------------------------------------
-    # from phase2_scraper.scraper import scrape_reviews
-    # logger.info("Phase 2: Scraping Play Store reviews...")
-    # scrape_reviews()
-    # logger.info("Phase 2: Complete")
+    from phase2_scraper.scraper import scrape_reviews
+    logger.info("Phase 2: Scraping Play Store reviews...")
+    scrape_reviews()
+    logger.info("Phase 2: Complete")
 
     # ------------------------------------------------------------------
     # Phase 3 — Clean & Strip PII

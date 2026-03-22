@@ -8,6 +8,8 @@ python-dotenv>=1.0.0
 # Phase 2 — Review Scraping
 google-play-scraper>=1.2.0
 python-dateutil>=2.8.0
+emoji>=2.0.0
+langdetect>=1.0.9
 
 # Phase 4 — Theme Generation (Groq)
 groq>=0.4.0
