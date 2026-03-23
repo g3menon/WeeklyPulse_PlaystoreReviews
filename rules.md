@@ -81,9 +81,10 @@
 | # | Rule | Details |
 |---|------|---------|
 | P5.1 | **Single Gemini call.** Generate the entire pulse JSON (themes summary, quotes, actions) in one API call. | Cost and latency control. |
-| P5.2 | **Validate pulse schema before saving.** The output must contain: `themes` (array), `quotes` (array of 3), `actions` (array of 3), `meta` (object with counts and date range). | Prevents Phase 6 and Phase 7 from breaking on malformed data. |
+| P5.2 | **Validate pulse schema before saving.** The output must contain: `themes` (array), `quotes` (array of 4), `actions` (array of 3), `meta` (object with counts and date range). | Prevents Phase 6 and Phase 7 from breaking on malformed data. |
 | P5.3 | **Anonymise quotes.** Even though PII was stripped in Phase 3, ensure selected quotes contain no identifiable information, usernames, or app-specific account detail. | Extra safety layer before leadership-facing output. |
 | P5.4 | **Keep the pulse concise.** Total pulse output should be under 1,500 tokens. Instruct the LLM to be succinct — leadership doesn't read walls of text. | Readability and email-friendliness. |
+| P5.5 | **Positive Focus.** Ensure exactly 4 top themes and 4 quotes. The fourth theme must be generated from positive feedback to know what is working well. The fourth quote must match this positive theme to know what to keep doing. | Balanced perspective for leadership. |
 
 ---
 
@@ -154,14 +155,14 @@ Phase 1 (Setup)     → 3 rules   — Config validation, single source of truth,
 Phase 2 (Scrape)    → 6 rules   — 30-word min, cap 200, dedup, date filter, no PII fields, rate limits
 Phase 3 (Clean)     → 6 rules   — PII regex, gibberish filter, hate speech filter, re-check length, normalise, log stats
 Phase 4 (Themes)    → 8 rules   — Min calls, batch, JSON output, >=5 themes with positive, no raw reviews, temp=0, multi-theme, sentiment matching
-Phase 5 (Pulse)     → 4 rules   — Single call, validate schema, anonymise quotes, keep concise
+Phase 5 (Pulse)     → 5 rules   — Single call, validate schema, anonymise quotes, keep concise, positive focus
 Phase 6 (Email)     → 6 rules   — Single call, save draft first, Jinja2, self-contained HTML, no PII, fallback
 Phase 7 (Dashboard) → 3 rules   — Read JSON, warn if missing, no raw text
 Phase 8 (Docker)    → 3 rules   — Slim image, no baked secrets, gitignore .env
 Phase 9 (Scheduler) → 3 rules   — GitHub Secrets, upload artifacts, manual trigger
 Global              → 8 rules   — Simplicity, cost control, PII, READMEs, env vars, logging, error handling, pinned deps
 ──────────────────────────────────
-Total               → 48 rules
+Total               → 49 rules
 ```
 
 ---

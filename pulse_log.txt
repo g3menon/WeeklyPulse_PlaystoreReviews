@@ -1,0 +1,2 @@
+[32m[2026-03-23 13:01:52] [INFO    ] [llm_clients         ] Groq client initialised (model: llama-3.3-70b-versatile)[0m
+[32m[2026-03-23 13:01:52] [INFO    ] [llm_clients         ] Gemini client initialised (model: gemini-2.5-flash)[0m

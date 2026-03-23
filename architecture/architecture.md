@@ -235,7 +235,7 @@ Flow:
   Aggregate stats per theme (count, avg rating)
         │
         ▼
-  Rank themes by review count → top 3
+  Rank themes by review count → top 4 (including 1 positive focus)
         │
         ▼
   Single Gemini 2.5 Flash call:
@@ -244,8 +244,8 @@ Flow:
   │  analyst at a fintech company.           │
   │                                          │
   │  Prompt: Given classified reviews:       │
-  │  1. Explain top 3 themes for leadership  │
-  │  2. Pick 3 anonymised, impactful quotes  │
+  │  1. Explain top 4 themes for leadership  │
+  │  2. Pick 4 anonymised, impactful quotes  │
   │  3. Suggest 3 product improvements       │
   │                                          │
   │  Output: Structured JSON pulse object    │

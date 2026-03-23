@@ -38,12 +38,23 @@ class PulseGenerator:
         ranked_themes.sort(key=lambda x: x["review_count"], reverse=True)
         top_3_themes = ranked_themes[:3]
 
-        if not top_3_themes:
+        positive_theme = None
+        for t in sorted(ranked_themes, key=lambda x: x["avg_rating"], reverse=True):
+            if t not in top_3_themes:
+                positive_theme = t
+                break
+                
+        if positive_theme:
+            top_4_themes = top_3_themes + [positive_theme]
+        else:
+            top_4_themes = ranked_themes[:4]
+
+        if not top_4_themes:
             logger.warning("No themes found in classified reviews.")
             return self._fallback_pulse(reviews)
 
         # Step 3: Single Gemini 2.5 Flash call
-        prompt = self._build_prompt(reviews, top_3_themes)
+        prompt = self._build_prompt(reviews, top_4_themes)
         
         try:
             response_text = self.client.generate(prompt)
@@ -57,20 +68,20 @@ class PulseGenerator:
             pulse_data = json.loads(cleaned_text)
             
             # Validate and Enrich
-            self._enrich_pulse_data(pulse_data, reviews, top_3_themes)
+            self._enrich_pulse_data(pulse_data, reviews, top_4_themes)
             return pulse_data
 
         except json.JSONDecodeError as e:
             logger.error(f"Failed to decode JSON from Gemini: {e}\nResponse: {response_text}")
             logger.info("Falling back to basic aggregation summary.")
-            return self._fallback_pulse(reviews, top_3_themes)
+            return self._fallback_pulse(reviews, top_4_themes)
         except Exception as e:
             logger.error(f"Failed to generate pulse: {e}")
             logger.info("Falling back to basic aggregation summary.")
-            return self._fallback_pulse(reviews, top_3_themes)
+            return self._fallback_pulse(reviews, top_4_themes)
 
-    def _build_prompt(self, reviews: List[Dict[str, Any]], top_3_themes: List[Dict[str, Any]]) -> str:
-        theme_names = [t["name"] for t in top_3_themes]
+    def _build_prompt(self, reviews: List[Dict[str, Any]], top_4_themes: List[Dict[str, Any]]) -> str:
+        theme_names = [t["name"] for t in top_4_themes]
         
         relevant_reviews = []
         for rev in reviews:
@@ -82,13 +93,14 @@ class PulseGenerator:
                     "themes": rev.get("themes", [])
                 })
         
-        limited_reviews = relevant_reviews[:100]
+        # We might need more reviews to ensure the positive theme has corresponding reviews
+        limited_reviews = relevant_reviews[:120]
 
         prompt = f"""You are a senior product analyst at a fintech company.
 
 I am providing you with {len(reviews)} recent app reviews and their classification into themes.
-The top 3 themes by volume are:
-{json.dumps(top_3_themes, indent=2)}
+The selected 4 themes are:
+{json.dumps(top_4_themes, indent=2)}
 
 Here are some of the reviews:
 {json.dumps(limited_reviews, indent=2)}
@@ -109,7 +121,7 @@ Required JSON Schema:
   ],
   "user_quotes": [
     {{
-      "quote": "<string (extract 3 impactful, fully anonymised quotes)>",
+      "quote": "<string (extract 4 impactful, fully anonymised quotes)>",
       "theme": "<string>",
       "rating": <integer>
     }}
@@ -123,18 +135,18 @@ Required JSON Schema:
 }}
 
 Rules:
-1. "top_themes" should exactly contain the 3 themes provided, with an "explanation" derived from the reviews. Use the review_count and avg_rating values I gave you.
-2. "user_quotes" must contain exactly 3 quotes. ANONYMISE the quotes (do not include names, specific account amounts like '5L', phone numbers, email IDs, or highly specific personal info).
+1. "top_themes" should exactly contain the 4 themes provided, with an "explanation" derived from the reviews. The 4th theme MUST focus on explaining the positive feedback to know what is working well. Use the review_count and avg_rating values I gave you.
+2. "user_quotes" must contain exactly 4 quotes. The 4th quote MUST be from the 4th (positive) theme. ANONYMISE the quotes (do not include names, specific account amounts like '5L', phone numbers, email IDs, or highly specific personal info).
 3. "action_ideas" must contain exactly 3 actionable improvements.
 4. ONLY return valid JSON. Do not include introductory text or Markdown formatting around the JSON (no ```json).
 5. Ensure valid JSON format (escape necessary characters).
 """
         return prompt
 
-    def _fallback_pulse(self, reviews: List[Dict[str, Any]], top_3_themes: List[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def _fallback_pulse(self, reviews: List[Dict[str, Any]], top_4_themes: List[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Generates a fallback pulse object if LLM fails."""
-        if not top_3_themes:
-            top_3_themes = []
+        if not top_4_themes:
+            top_4_themes = []
         
         pulse_data = {
             "top_themes": [
@@ -144,7 +156,7 @@ Rules:
                     "review_count": t.get("review_count", 0),
                     "avg_rating": t.get("avg_rating", 0.0),
                     "explanation": "Could not generate explanation due to API error."
-                } for i, t in enumerate(top_3_themes)
+                } for i, t in enumerate(top_4_themes)
             ],
             "user_quotes": [
                 {
@@ -160,10 +172,10 @@ Rules:
                 }
             ]
         }
-        self._enrich_pulse_data(pulse_data, reviews, top_3_themes)
+        self._enrich_pulse_data(pulse_data, reviews, top_4_themes)
         return pulse_data
 
-    def _enrich_pulse_data(self, pulse_data: Dict[str, Any], reviews: List[Dict[str, Any]], top_3_themes: List[Dict[str, Any]]):
+    def _enrich_pulse_data(self, pulse_data: Dict[str, Any], reviews: List[Dict[str, Any]], top_4_themes: List[Dict[str, Any]]):
         if reviews and "date" in reviews[0]:
             try:
                 dates = [datetime.strptime(r["date"], "%Y-%m-%d") for r in reviews if "date" in r]

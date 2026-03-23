@@ -9,8 +9,8 @@ def mock_reviews():
         {"review_id": "r1", "text": "App crashes a lot.", "rating": 2, "date": "2026-03-01", "themes": ["App Performance"]},
         {"review_id": "r2", "text": "Good app but slow.", "rating": 3, "date": "2026-03-02", "themes": ["App Performance"]},
         {"review_id": "r3", "text": "Support is bad.", "rating": 1, "date": "2026-03-03", "themes": ["Customer Support"]},
-        {"review_id": "r4", "text": "I like the new theme.", "rating": 5, "date": "2026-03-04", "themes": ["UI/UX"]},
-        {"review_id": "r5", "text": "Another positive review.", "rating": 5, "date": "2026-03-05", "themes": ["UI/UX", "App Performance"]},
+        {"review_id": "r4", "text": "UI is okay.", "rating": 3, "date": "2026-03-04", "themes": ["UI/UX"]},
+        {"review_id": "r5", "text": "Another positive review.", "rating": 5, "date": "2026-03-05", "themes": ["Positive Feedback"]},
         {"review_id": "r6", "text": "Pricing is too high.", "rating": 2, "date": "2026-03-05", "themes": ["Pricing"]}
     ]
 
@@ -22,14 +22,16 @@ def test_generate_pulse_success(pulse_generator, mock_reviews):
     mock_json_response = '''
     {
       "top_themes": [
-        {"rank": 1, "name": "App Performance", "review_count": 3, "avg_rating": 3.3, "explanation": "Users complain about crashes."},
-        {"rank": 2, "name": "UI/UX", "review_count": 2, "avg_rating": 5.0, "explanation": "Users love the new design."},
-        {"rank": 3, "name": "Customer Support", "review_count": 1, "avg_rating": 1.0, "explanation": "Users feel support is lacking."}
+        {"rank": 1, "name": "App Performance", "review_count": 2, "avg_rating": 2.5, "explanation": "Users complain about crashes."},
+        {"rank": 2, "name": "Customer Support", "review_count": 1, "avg_rating": 1.0, "explanation": "Users feel support is lacking."},
+        {"rank": 3, "name": "UI/UX", "review_count": 1, "avg_rating": 3.0, "explanation": "Average UI experience."},
+        {"rank": 4, "name": "Positive Feedback", "review_count": 1, "avg_rating": 5.0, "explanation": "Users love the app."}
       ],
       "user_quotes": [
         {"quote": "App crashes a lot.", "theme": "App Performance", "rating": 2},
         {"quote": "Support is bad.", "theme": "Customer Support", "rating": 1},
-        {"quote": "I like the new theme.", "theme": "UI/UX", "rating": 5}
+        {"quote": "UI is okay.", "theme": "UI/UX", "rating": 3},
+        {"quote": "Another positive review.", "theme": "Positive Feedback", "rating": 5}
       ],
       "action_ideas": [
         {"title": "Fix bugs", "rationale": "App crashes freq."},
@@ -47,7 +49,9 @@ def test_generate_pulse_success(pulse_generator, mock_reviews):
         assert "quotes" in pulse
         assert "actions" in pulse
         assert "meta" in pulse
-        assert len(pulse["themes"]) == 3
+        assert len(pulse["themes"]) == 4
+        assert pulse["themes"][3]["name"] == "Positive Feedback"
+        assert len(pulse["quotes"]) == 4
         # Ensure only 1 LLM call is made
         assert mock_generate.call_count == 1
 
