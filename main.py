@@ -44,18 +44,18 @@ def main() -> None:
     # ------------------------------------------------------------------
     # Phase 4 — Theme Generation & Classification (Groq)
     # ------------------------------------------------------------------
-    # from phase4_themes.theme_generator import run_theme_generation
-    # logger.info("Phase 4: Discovering themes via Groq LLaMA 3.3...")
-    # run_theme_generation()
-    # logger.info("Phase 4: Complete")
+    from phase4_themes.theme_generator import run_theme_generation
+    logger.info("Phase 4: Discovering themes via Groq LLaMA 3.3...")
+    run_theme_generation()
+    logger.info("Phase 4: Complete")
 
     # ------------------------------------------------------------------
     # Phase 5 — Weekly Pulse Generation (Gemini 2.5 Flash)
     # ------------------------------------------------------------------
-    # from phase5_pulse.pulse_generator import generate_pulse
-    # logger.info("Phase 5: Generating weekly pulse via Gemini 2.5 Flash...")
-    # generate_pulse()
-    # logger.info("Phase 5: Complete")
+    from phase5_pulse.pulse_generator import generate_pulse
+    logger.info("Phase 5: Generating weekly pulse via Gemini 2.5 Flash...")
+    generate_pulse()
+    logger.info("Phase 5: Complete")
 
     # ------------------------------------------------------------------
     # Phase 6 — Email Draft & Delivery (Gemini 2.5 Flash + Gmail SMTP)

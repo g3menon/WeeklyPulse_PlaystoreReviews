@@ -68,9 +68,11 @@
 | P4.1 | **Minimise LLM calls.** Theme discovery = 1 call. Batch classification = 1–2 calls. Never exceed 3 total Groq API calls. | Cost control: Groq calls should stay under $0.005. |
 | P4.2 | **Batch reviews into a single prompt** rather than classifying one-by-one. Send all reviews in one payload. | 200 individual calls vs 1 batch call = 200× cost difference. |
 | P4.3 | **Request structured JSON output.** Always instruct the LLM to return valid JSON. Validate the response schema before saving. | Prevents downstream parsing failures. |
-| P4.4 | **Limit themes to 3–5.** If the LLM returns fewer than 3 or more than 5, re-prompt once. If it still fails, use the raw response and log a warning. | Too few themes = overgeneralisation. Too many = noise. |
+| P4.4 | **Limit themes to exactly 5 or more.** Generate at least 5 themes, including at least one related to positive feedback or what is working well. If it fails, re-prompt once. | Too few themes = overgeneralisation. Capturing positive feedback is essential for a balanced pulse. |
 | P4.5 | **Never send raw reviews to the LLM.** Only cleaned reviews (post-Phase 3) should reach any API. | PII and toxic content must never be sent to external APIs. |
 | P4.6 | **Use temperature = 0 for classification tasks.** Deterministic output is preferred for reproducibility. | Consistent results across runs. |
+| P4.7 | **Multiple themes per review.** A single review can be associated with multiple themes if it touches on several distinct topics. | Captures nuance in comprehensive reviews. |
+| P4.8 | **Accurate sentiment classification.** Ensure that positive feedback is not wrongly classified under negative categories. Themes and quotes must match in sentiment. | Avoids misleading the leadership team. |
 
 ---
 
@@ -151,7 +153,7 @@ Before every deployment or merge to `main`, verify:
 Phase 1 (Setup)     → 3 rules   — Config validation, single source of truth, safe repr
 Phase 2 (Scrape)    → 6 rules   — 30-word min, cap 200, dedup, date filter, no PII fields, rate limits
 Phase 3 (Clean)     → 6 rules   — PII regex, gibberish filter, hate speech filter, re-check length, normalise, log stats
-Phase 4 (Themes)    → 6 rules   — Min calls, batch, JSON output, 3-5 themes, no raw reviews, temp=0
+Phase 4 (Themes)    → 8 rules   — Min calls, batch, JSON output, >=5 themes with positive, no raw reviews, temp=0, multi-theme, sentiment matching
 Phase 5 (Pulse)     → 4 rules   — Single call, validate schema, anonymise quotes, keep concise
 Phase 6 (Email)     → 6 rules   — Single call, save draft first, Jinja2, self-contained HTML, no PII, fallback
 Phase 7 (Dashboard) → 3 rules   — Read JSON, warn if missing, no raw text
