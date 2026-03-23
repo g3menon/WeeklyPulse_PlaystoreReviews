@@ -95,7 +95,7 @@
 | P6.1 | **Single Gemini call for prose polishing.** Do not make multiple calls to refine wording. One call, one pass. | Token economy. |
 | P6.2 | **Always save the HTML draft locally** (`data/email_draft.html`) before attempting SMTP. | If email delivery fails, the draft is still available for manual sending. |
 | P6.3 | **Use Jinja2 for templating.** Do not generate HTML from string concatenation. | Maintainable, readable, and secure templates. |
-| P6.4 | **The email must be a single-page, self-contained HTML.** No external CSS, no JavaScript, no image hotlinks. All styles must be inline. | Email client compatibility (Gmail, Outlook, Apple Mail). |
+| P6.4 | **The email must be a single-page, self-contained HTML.** No external CSS, no JavaScript, no image hotlinks. All styles must be inline. | Email client compatibility (Gmail, Outlook, Apple Mail). | Make sure the template is user friendly, content does not overlap, the look and feel is modern, modular and responsive, it is visually appealing and easy to read. |
 | P6.5 | **Do not include any PII in the email.** Double-check that no user names, emails, or phone numbers appear in the final HTML. | Final gatekeeper before data leaves the system. |
 | P6.6 | **Fallback on Gemini failure.** If the prose-polishing call fails, render the email using raw pulse data. Never skip sending because of a polish failure. | Reliability over perfection. |
 

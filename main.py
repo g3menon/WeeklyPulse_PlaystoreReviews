@@ -60,10 +60,10 @@ def main() -> None:
     # ------------------------------------------------------------------
     # Phase 6 — Email Draft & Delivery (Gemini 2.5 Flash + Gmail SMTP)
     # ------------------------------------------------------------------
-    # from phase6_email.email_sender import send_email
-    # logger.info("Phase 6: Drafting and sending email...")
-    # send_email()
-    # logger.info("Phase 6: Complete")
+    from phase6_email.email_sender import send_email
+    logger.info("Phase 6: Drafting and sending email...")
+    send_email()
+    logger.info("Phase 6: Complete")
 
     logger.info("=" * 60)
     logger.info("Pipeline Complete — check your inbox!")
