@@ -375,9 +375,9 @@ Deployment:
   - Streamlit Cloud: share.streamlit.io (free hosting)
 
 Theme:
-  - Dark background (#0f0f23)
-  - Purple accent (#8B5CF6)
-  - Custom via .streamlit/config.toml
+  -similar to phase 6
+  -light themed, keep a goog amount of spcing and padding
+  -
 ```
 
 **Why Streamlit over FastAPI + React?**

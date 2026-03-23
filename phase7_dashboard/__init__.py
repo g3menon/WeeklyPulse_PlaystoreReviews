@@ -1,1 +1,1 @@
-# phase7_dashboard — Streamlit Dashboard
+# Initialization for phase7_dashboard module
