@@ -1,0 +1,141 @@
+{
+  "top_themes": [
+    {
+      "rank": 1,
+      "name": "App Performance",
+      "review_count": 106,
+      "avg_rating": 2.4,
+      "explanation": "Users frequently report critical app issues such as crashes during trades, freezing, slow data syncing, inability to exit positions, money transfer problems, and KYC failures. These glitches often lead to significant financial losses and contribute to a highly negative experience, despite some acknowledging improvements in speed after updates."
+    },
+    {
+      "rank": 2,
+      "name": "Features",
+      "review_count": 4,
+      "avg_rating": 2.2,
+      "explanation": "Users express a need for more advanced trading features (e.g., commodity segment, comprehensive SIP/SWP controls, specific analytical tools, TradingView integration) and improved portfolio tracking options (XIRR, EPF for trust-managed funds, comprehensive transaction history). There's dissatisfaction with recently removed features and limited bank integration for transactions."
+    },
+    {
+      "rank": 3,
+      "name": "User Interface",
+      "review_count": 3,
+      "avg_rating": 2.0,
+      "explanation": "Feedback indicates a cluttered, confusing, and inconsistent UI. Complaints include excessively large font sizes, misaligned elements on tablets, and frequent, unwelcome UI changes that disrupt user flow. Users desire a cleaner, simpler, more customizable design with options for font size and theme settings."
+    },
+    {
+      "rank": 4,
+      "name": "Positive Experience",
+      "review_count": 1,
+      "avg_rating": 4.0,
+      "explanation": "The app is praised for facilitating US equity investments from India. Users appreciate its potential to be a leading platform, particularly highlighting the desire for further integrations to enhance the trading setup."
+    }
+  ],
+  "user_quotes": [
+    {
+      "quote": "I did a trade in options for scalping and then their server crashed and I cannot exit my order. I had a huge loss. I tried to connect with their customer support and still hadn't gotten any reply. worst trading platform.",
+      "theme": "App Performance",
+      "rating": 1
+    },
+    {
+      "quote": "The app is glitchy and has fluctuations, with instances of it not responding for significant periods during morning sessions. Moving between Wi-Fi and mobile data causes delays in data syncing. Additionally, stop-loss orders are frequently not executed or updated correctly.",
+      "theme": "App Performance",
+      "rating": 2
+    },
+    {
+      "quote": "The app is good, but its font size is very small, making it difficult to read quickly or clearly. I would suggest adding settings for font size and other theme adjustments within the app.",
+      "theme": "User Interface",
+      "rating": 2
+    },
+    {
+      "quote": "This is the best app in India to buy US equities. I would love to give a 5-star rating, if the platform would integrate with Trading View for better trading setup.",
+      "theme": "Positive Experience",
+      "rating": 4
+    }
+  ],
+  "action_ideas": [
+    {
+      "title": "Enhance App Stability & Performance",
+      "rationale": "Frequent crashes, freezing, and syncing issues, particularly during critical trading periods, are causing significant financial losses and leading to high user dissatisfaction. Prioritizing core app stability and speed is crucial for user trust and retention."
+    },
+    {
+      "title": "Redesign & Standardize UI/UX",
+      "rationale": "Users are consistently reporting a cluttered, inconsistent, and difficult-to-navigate interface. A redesign focusing on clarity, customizable elements (like font size and themes), and a consistent user journey will significantly improve usability and reduce frustration."
+    },
+    {
+      "title": "Improve Customer Support & Issue Resolution",
+      "rationale": "Many reviews highlight extremely poor customer service, including unanswered calls, unaddressed tickets, and long delays in resolving critical financial issues. Implementing a robust and responsive support system is essential to build trust and prevent churn."
+    }
+  ],
+  "generated_at": "2026-03-23T13:23:02.120927",
+  "week_range": "Jan 26 \u2013 Mar 20, 2026",
+  "total_reviews": 109,
+  "themes": [
+    {
+      "rank": 1,
+      "name": "App Performance",
+      "review_count": 106,
+      "avg_rating": 2.4,
+      "explanation": "Users frequently report critical app issues such as crashes during trades, freezing, slow data syncing, inability to exit positions, money transfer problems, and KYC failures. These glitches often lead to significant financial losses and contribute to a highly negative experience, despite some acknowledging improvements in speed after updates."
+    },
+    {
+      "rank": 2,
+      "name": "Features",
+      "review_count": 4,
+      "avg_rating": 2.2,
+      "explanation": "Users express a need for more advanced trading features (e.g., commodity segment, comprehensive SIP/SWP controls, specific analytical tools, TradingView integration) and improved portfolio tracking options (XIRR, EPF for trust-managed funds, comprehensive transaction history). There's dissatisfaction with recently removed features and limited bank integration for transactions."
+    },
+    {
+      "rank": 3,
+      "name": "User Interface",
+      "review_count": 3,
+      "avg_rating": 2.0,
+      "explanation": "Feedback indicates a cluttered, confusing, and inconsistent UI. Complaints include excessively large font sizes, misaligned elements on tablets, and frequent, unwelcome UI changes that disrupt user flow. Users desire a cleaner, simpler, more customizable design with options for font size and theme settings."
+    },
+    {
+      "rank": 4,
+      "name": "Positive Experience",
+      "review_count": 1,
+      "avg_rating": 4.0,
+      "explanation": "The app is praised for facilitating US equity investments from India. Users appreciate its potential to be a leading platform, particularly highlighting the desire for further integrations to enhance the trading setup."
+    }
+  ],
+  "quotes": [
+    {
+      "quote": "I did a trade in options for scalping and then their server crashed and I cannot exit my order. I had a huge loss. I tried to connect with their customer support and still hadn't gotten any reply. worst trading platform.",
+      "theme": "App Performance",
+      "rating": 1
+    },
+    {
+      "quote": "The app is glitchy and has fluctuations, with instances of it not responding for significant periods during morning sessions. Moving between Wi-Fi and mobile data causes delays in data syncing. Additionally, stop-loss orders are frequently not executed or updated correctly.",
+      "theme": "App Performance",
+      "rating": 2
+    },
+    {
+      "quote": "The app is good, but its font size is very small, making it difficult to read quickly or clearly. I would suggest adding settings for font size and other theme adjustments within the app.",
+      "theme": "User Interface",
+      "rating": 2
+    },
+    {
+      "quote": "This is the best app in India to buy US equities. I would love to give a 5-star rating, if the platform would integrate with Trading View for better trading setup.",
+      "theme": "Positive Experience",
+      "rating": 4
+    }
+  ],
+  "actions": [
+    {
+      "title": "Enhance App Stability & Performance",
+      "rationale": "Frequent crashes, freezing, and syncing issues, particularly during critical trading periods, are causing significant financial losses and leading to high user dissatisfaction. Prioritizing core app stability and speed is crucial for user trust and retention."
+    },
+    {
+      "title": "Redesign & Standardize UI/UX",
+      "rationale": "Users are consistently reporting a cluttered, inconsistent, and difficult-to-navigate interface. A redesign focusing on clarity, customizable elements (like font size and themes), and a consistent user journey will significantly improve usability and reduce frustration."
+    },
+    {
+      "title": "Improve Customer Support & Issue Resolution",
+      "rationale": "Many reviews highlight extremely poor customer service, including unanswered calls, unaddressed tickets, and long delays in resolving critical financial issues. Implementing a robust and responsive support system is essential to build trust and prevent churn."
+    }
+  ],
+  "meta": {
+    "total_reviews": 109,
+    "week_range": "Jan 26 \u2013 Mar 20, 2026"
+  }
+}

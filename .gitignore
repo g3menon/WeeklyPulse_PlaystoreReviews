@@ -6,7 +6,9 @@
 .env
 
 # Runtime data outputs
-data/
+data/*
+!data/weekly_pulse.json
+!data/reviews_classified.json
 
 # Python
 __pycache__/
