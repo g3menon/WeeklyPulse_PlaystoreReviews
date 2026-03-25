@@ -5,10 +5,10 @@ import smtplib
 import ssl
 from email.message import EmailMessage
 from jinja2 import Environment, FileSystemLoader
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
 from phase1_setup.llm_clients import gemini_client
-from phase1_setup.config import settings, WEEKLY_PULSE_PATH, EMAIL_DRAFT_PATH
+from phase1_setup.config import settings, WEEKLY_PULSE_PATH, EMAIL_DRAFT_PATH, FEE_EXPLANATION_PATH
 
 logger = logging.getLogger("phase6_email")
 
@@ -48,7 +48,7 @@ Return purely valid JSON with no introductory text and no markdown formatting (n
             logger.error(f"Failed to polish pulse data, using raw data fallback. Error: {e}")
             return pulse_data  # Rule P6.6 Fallback
 
-    def _prepare_template_context(self, pulse_data: Dict[str, Any]) -> Dict[str, Any]:
+    def _prepare_template_context(self, pulse_data: Dict[str, Any], fee_data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Transforms pulse JSON into the context required by the Jinja2 template."""
         # Handle variations in keys
         themes_raw = pulse_data.get("top_themes", pulse_data.get("themes", []))
@@ -114,7 +114,8 @@ Return purely valid JSON with no introductory text and no markdown formatting (n
             "quotes": quotes,
             "actions": actions,
             "generated_at": generated_at,
-            "rating_distribution": pulse_data.get("rating_distribution", None)
+            "rating_distribution": pulse_data.get("rating_distribution", None),
+            "fee_data": fee_data
         }
 
     def render_email_html(self, context: Dict[str, Any]) -> str:
@@ -163,8 +164,16 @@ Return purely valid JSON with no introductory text and no markdown formatting (n
         with open(input_path, "r", encoding="utf-8") as f:
             pulse_data = json.load(f)
             
+        fee_data = None
+        if os.path.exists(FEE_EXPLANATION_PATH):
+            try:
+                with open(FEE_EXPLANATION_PATH, "r", encoding="utf-8") as f:
+                    fee_data = json.load(f)
+            except Exception as e:
+                logger.error(f"Failed to load fee explanation: {e}")
+            
         polished_data = self._polish_pulse_data(pulse_data)
-        context = self._prepare_template_context(polished_data)
+        context = self._prepare_template_context(polished_data, fee_data)
         html_content = self.render_email_html(context)
         
         self.save_draft(html_content, draft_path)

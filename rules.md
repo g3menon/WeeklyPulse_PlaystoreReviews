@@ -130,6 +130,14 @@
 | P9.3 | **Support `workflow_dispatch`** for manual trigger alongside the cron schedule. | Flexibility for on-demand runs. |
 | P9.4 | **Timezone Awareness (`UTC` vs Local).** GitHub Actions cron runs strictly in UTC. Cron expressions must be explicitly converted to UTC (e.g. 9:00 AM IST corresponds to `30 3 * * 1` in UTC). | Prevents schedule mismatches and delayed operations. |
 
+## Phase 10A — Fee Explanation
+
+| # | Rule | Details |
+|---|------|---------|
+| P10A.1 | **Handle scraping failures gracefully.** INDMoney blocks basic requests. The scraper must catch `requests.exceptions.RequestException` and HTTP errors, and fall back to mock data or skip the fee section silently, rather than crashing the pipeline. | Cloudflare or bot protection can block requests. We cannot let a 403 on the fee explainer stop the primary weekly pulse email from going out. |
+| P10A.2 | **Use simple requests/bs4.** Do not introduce bulky dependencies like Playwright or Selenium. If simple requests fail, rely on the fallback. | Keep deployment lightweight, particularly to avoid bloating the Docker image. |
+| P10A.3 | **Read target URL from `config.py`.** The target fund URL must be specified via `FEE_FUND_URL` in `config.py`, not hardcoded in the scraper files. | Improves maintainability and allows for targeting different funds in the future. |
+
 ---
 
 ## 📐 Deployment Checklist

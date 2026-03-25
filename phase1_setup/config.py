@@ -46,7 +46,11 @@ REVIEWS_RAW_PATH = DATA_DIR / "reviews_raw.json"
 REVIEWS_CLEANED_PATH = DATA_DIR / "reviews_cleaned.json"
 REVIEWS_CLASSIFIED_PATH = DATA_DIR / "reviews_classified.json"
 WEEKLY_PULSE_PATH = DATA_DIR / "weekly_pulse.json"
+FEE_EXPLANATION_PATH = DATA_DIR / "fee_explanation.json"
 EMAIL_DRAFT_PATH = DATA_DIR / "email_draft.html"
+
+# Phase 10A Config
+FEE_FUND_URL = "https://www.indmoney.com/mutual-funds/hdfc-pharma-and-healthcare-fund-direct-growth-1044289"
 
 
 # ---------------------------------------------------------------------------

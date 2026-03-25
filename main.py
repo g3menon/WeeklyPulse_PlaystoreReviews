@@ -58,6 +58,14 @@ def main() -> None:
     logger.info("Phase 5: Complete")
 
     # ------------------------------------------------------------------
+    # Phase 10A — Fee Explainer
+    # ------------------------------------------------------------------
+    from phase_feeexplainer.fee_scraper import run_fee_scraper
+    logger.info("Phase 10A: Scraping Mutual Fund Fee Details...")
+    run_fee_scraper()
+    logger.info("Phase 10A: Complete")
+
+    # ------------------------------------------------------------------
     # Phase 6 — Email Draft & Delivery (Gemini 2.5 Flash + Gmail SMTP)
     # ------------------------------------------------------------------
     from phase6_email.email_sender import send_email
