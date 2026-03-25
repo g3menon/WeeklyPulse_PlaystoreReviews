@@ -6,7 +6,7 @@
 
 [![Phase](https://img.shields.io/badge/Phase-9%20of%209-blue)]()
 [![CI](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)]()
-[![Schedule](https://img.shields.io/badge/Cron-Every%20Monday%209AM%20UTC-green)]()
+[![Schedule](https://img.shields.io/badge/Cron-Every%20Monday%209AM%20IST-green)]()
 [![Status](https://img.shields.io/badge/Status-Architecture-yellow)]()
 
 </div>
@@ -27,7 +27,7 @@
 
 ```mermaid
 flowchart TD
-    A["⏰ Cron: Monday 9AM UTC"] --> B["GitHub Actions Runner"]
+    A["⏰ Cron: Monday 9AM IST (3:30 AM UTC)"] --> B["GitHub Actions Runner"]
     B --> C["Checkout Repo"]
     C --> D["Setup Python 3.11"]
     D --> E["Install Dependencies"]
@@ -65,9 +65,9 @@ phase9_scheduler/
 name: 📊 Weekly Pulse Pipeline
 
 on:
-  # Automatic: Every Monday at 9:00 AM UTC
+  # Automatic: Every Monday at 9:00 AM IST (3:30 AM UTC)
   schedule:
-    - cron: '0 9 * * 1'
+    - cron: '30 3 * * 1'
 
   # Manual: "Run workflow" button in GitHub UI
   workflow_dispatch:
@@ -129,13 +129,13 @@ jobs:
 
 ```yaml
 schedule:
-  - cron: '0 9 * * 1'    # Every Monday at 9:00 AM UTC
+  - cron: '30 3 * * 1'    # Every Monday at 9:00 AM IST (3:30 AM UTC)
 ```
 
 | Field | Value | Meaning |
 |-------|-------|---------|
-| Minute | `0` | At minute 0 |
-| Hour | `9` | At 9 AM UTC |
+| Minute | `30` | At minute 30 |
+| Hour | `3` | At 3 AM UTC (9 AM IST) |
 | Day of Month | `*` | Any day |
 | Month | `*` | Any month |
 | Day of Week | `1` | Monday |
@@ -207,7 +207,7 @@ GitHub automatically emails you when a workflow fails. You can also configure:
 - [ ] `.github/workflows/weekly_pulse.yml` exists and is valid YAML
 - [ ] All 4 secrets configured in GitHub Settings
 - [ ] Manual trigger runs full pipeline successfully
-- [ ] Cron fires on Monday ~9 AM UTC
+- [ ] Cron fires on Monday ~9 AM IST (3:30 AM UTC)
 - [ ] Email arrives in inbox after automated run
 - [ ] Pipeline artifacts downloadable from Actions tab
 - [ ] Failure sends GitHub notification email

@@ -431,7 +431,7 @@ Theme:
 .github/workflows/weekly_pulse.yml
 
 Trigger:
-  ├── cron: "0 9 * * 1"  (Every Monday 9 AM UTC)
+  ├── cron: "30 3 * * 1"  (Every Monday 9 AM IST / 3:30 AM UTC)
   └── workflow_dispatch   (Manual trigger button)
 
 Steps:

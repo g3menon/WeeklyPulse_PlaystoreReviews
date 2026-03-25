@@ -128,6 +128,7 @@
 | P9.1 | **Store all credentials in GitHub Secrets.** Never echo or log secret values in workflow steps. | Security compliance. |
 | P9.2 | **Upload `data/` as workflow artifacts** (retained 30 days). | Auditability and debugging of past runs. |
 | P9.3 | **Support `workflow_dispatch`** for manual trigger alongside the cron schedule. | Flexibility for on-demand runs. |
+| P9.4 | **Timezone Awareness (`UTC` vs Local).** GitHub Actions cron runs strictly in UTC. Cron expressions must be explicitly converted to UTC (e.g. 9:00 AM IST corresponds to `30 3 * * 1` in UTC). | Prevents schedule mismatches and delayed operations. |
 
 ---
 
@@ -159,10 +160,10 @@ Phase 5 (Pulse)     → 5 rules   — Single call, validate schema, anonymise qu
 Phase 6 (Email)     → 6 rules   — Single call, save draft first, Jinja2, self-contained HTML, no PII, fallback
 Phase 7 (Dashboard) → 3 rules   — Read JSON, warn if missing, no raw text
 Phase 8 (Docker)    → 3 rules   — Slim image, no baked secrets, gitignore .env
-Phase 9 (Scheduler) → 3 rules   — GitHub Secrets, upload artifacts, manual trigger
+Phase 9 (Scheduler) → 4 rules   — GitHub Secrets, upload artifacts, manual trigger, timezone awareness (UTC)
 Global              → 8 rules   — Simplicity, cost control, PII, READMEs, env vars, logging, error handling, pinned deps
 ──────────────────────────────────
-Total               → 49 rules
+Total               → 50 rules
 ```
 
 ---

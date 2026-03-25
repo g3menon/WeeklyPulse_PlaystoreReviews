@@ -3,24 +3,24 @@
 # ============================================
 
 # Phase 1 — Config
-python-dotenv>=1.0.0
+python-dotenv==1.0.0
 
 # Phase 2 — Review Scraping
-google-play-scraper>=1.2.0
-python-dateutil>=2.8.0
-emoji>=2.0.0
-langdetect>=1.0.9
+google-play-scraper==1.2.0
+python-dateutil==2.8.0
+emoji==2.0.0
+langdetect==1.0.9
 
 # Phase 4 — Theme Generation (Groq)
-groq>=0.4.0
+groq==0.4.0
 
 # Phase 5 & 6 — Pulse & Email (Gemini 2.5 Flash)
-google-genai>=1.0.0
+google-genai==1.0.0
 
 # Phase 6 — Email Templating
-Jinja2>=3.1.0
+Jinja2==3.1.0
 
 # Phase 7 — Streamlit Dashboard
-streamlit>=1.30.0
-plotly>=5.18.0
-pandas>=2.0.0
+streamlit==1.30.0
+plotly==5.18.0
+pandas==2.0.0

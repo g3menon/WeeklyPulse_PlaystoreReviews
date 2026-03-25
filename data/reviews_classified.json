@@ -1,22 +1,12 @@
 [
   {
-    "review_id": "9efbc5fd-e60d-4bfa-b557-af6370f6d7d4",
-    "rating": 5,
-    "text": "Good app, but some chart problems. IndMoney is a good trading app. But charts have issues: - Charts on desktop don't match mobile, chart drawing like Horizontal Row etc. - Can't save chart tools or trendlines in favorites. - Chart Terminal, Gets slow after opening 10+ charts. Please fix these!",
-    "date": "2026-01-27",
-    "thumbs_up": 93,
-    "themes": [
-      "App Performance"
-    ]
-  },
-  {
     "review_id": "0b4b7a9b-229c-4c51-a3b7-505fce39fc08",
     "rating": 4,
     "text": "This app is so impressive! It feels like having a personal chartered accountant for all my financial queries and information. Everything is clear, reliable, and easy to access. I’m truly impressed with how helpful and efficient it is!",
     "date": "2026-02-23",
     "thumbs_up": 21,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -26,7 +16,19 @@
     "date": "2026-02-14",
     "thumbs_up": 21,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches",
+      "Poor Customer Support"
+    ]
+  },
+  {
+    "review_id": "76deca6b-bb43-4ac5-8391-c45a86275ae3",
+    "rating": 1,
+    "text": "I did a trade in options for scalping and then their server crashed and I cannot exit my order. I had a huge loss. I tried to connect with their customer support and still hadn't gotten any reply. worst trading platform. Update They first said that they will reimburse the amount that I have lost during their server crash then they said that they cannot reimburse the amount so they will give me 2 month free brokerage and they still didn't provide me that. So please never use INDmoney",
+    "date": "2026-02-05",
+    "thumbs_up": 21,
+    "themes": [
+      "Technical Issues and Glitches",
+      "Poor Customer Support"
     ]
   },
   {
@@ -36,17 +38,7 @@
     "date": "2026-02-16",
     "thumbs_up": 20,
     "themes": [
-      "App Performance"
-    ]
-  },
-  {
-    "review_id": "76deca6b-bb43-4ac5-8391-c45a86275ae3",
-    "rating": 1,
-    "text": "I did a trade in options for scalping and then their server crashed and I cannot exit my order. I had a huge loss. I tried to connect with their customer support and still hadn't gotten any reply. worst trading platform. Update They first said that they will reimburse the amount that I have lost during their server crash then they said that they cannot reimburse the amount so they will give me 2 month free brokerage and they still didn't provide me that. So please never use INDmoney",
-    "date": "2026-02-05",
-    "thumbs_up": 20,
-    "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -56,7 +48,7 @@
     "date": "2026-02-04",
     "thumbs_up": 19,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -66,7 +58,18 @@
     "date": "2026-02-09",
     "thumbs_up": 17,
     "themes": [
-      "App Performance"
+      "Data Accuracy and Portfolio Tracking"
+    ]
+  },
+  {
+    "review_id": "6926916b-b81a-4548-a76d-cf588eadd5df",
+    "rating": 1,
+    "text": "One of the worst experiences. There was a technical issue on the app on Feb 3. And that is why, I've had to incur huge losses in F&O trading. Instead of helping me with this issue, the team has refused to issue any refund. This was very unacceptable since I'm forced to take this loss which wasn't even my fault in the first place. Not going to use it again, ever. It doesn't even deserve one star",
+    "date": "2026-02-04",
+    "thumbs_up": 17,
+    "themes": [
+      "Technical Issues and Glitches",
+      "Poor Customer Support"
     ]
   },
   {
@@ -76,17 +79,7 @@
     "date": "2026-02-25",
     "thumbs_up": 16,
     "themes": [
-      "App Performance"
-    ]
-  },
-  {
-    "review_id": "6926916b-b81a-4548-a76d-cf588eadd5df",
-    "rating": 1,
-    "text": "One of the worst experiences. There was a technical issue on the app on Feb 3. And that is why, I've had to incur huge losses in F&O trading. Instead of helping me with this issue, the team has refused to issue any refund. This was very unacceptable since I'm forced to take this loss which wasn't even my fault in the first place. Not going to use it again, ever. It doesn't even deserve one star",
-    "date": "2026-02-04",
-    "thumbs_up": 16,
-    "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -96,7 +89,8 @@
     "date": "2026-02-15",
     "thumbs_up": 15,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience",
+      "Data Accuracy and Portfolio Tracking"
     ]
   },
   {
@@ -106,7 +100,7 @@
     "date": "2026-02-25",
     "thumbs_up": 14,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -116,7 +110,8 @@
     "date": "2026-02-06",
     "thumbs_up": 13,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches",
+      "Poor Customer Support"
     ]
   },
   {
@@ -126,7 +121,7 @@
     "date": "2026-02-19",
     "thumbs_up": 12,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -136,7 +131,18 @@
     "date": "2026-02-16",
     "thumbs_up": 12,
     "themes": [
-      "App Performance"
+      "Poor Customer Support",
+      "Fees and Charges"
+    ]
+  },
+  {
+    "review_id": "1b143927-4555-4386-bb5a-588dfae5d3f6",
+    "rating": 4,
+    "text": "I frequently use INDmoney for loan repayments, but I am disappointed that it doesn't allow partial or custom amount payments. Currently, the app forces users to pay the full outstanding amount at once. Other payment apps allow us to make smaller advance payments (e.g., paying 200 towards a ₹1000 loan). Adding a flexible payment option where users can enter their own amount would be extremely helpful for managing finances. I hope the INDmoney team implements this feature soon.",
+    "date": "2026-02-28",
+    "thumbs_up": 11,
+    "themes": [
+      "Investment and Trading Features"
     ]
   },
   {
@@ -146,17 +152,7 @@
     "date": "2026-02-27",
     "thumbs_up": 11,
     "themes": [
-      "App Performance"
-    ]
-  },
-  {
-    "review_id": "1b143927-4555-4386-bb5a-588dfae5d3f6",
-    "rating": 4,
-    "text": "I frequently use INDmoney for loan repayments, but I am disappointed that it doesn't allow partial or custom amount payments. Currently, the app forces users to pay the full outstanding amount at once. Other payment apps allow us to make smaller advance payments (e.g., paying 200 towards a ₹1000 loan). Adding a flexible payment option where users can enter their own amount would be extremely helpful for managing finances. I hope the INDmoney team implements this feature soon.",
-    "date": "2026-02-28",
-    "thumbs_up": 10,
-    "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -166,7 +162,7 @@
     "date": "2026-03-02",
     "thumbs_up": 8,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -176,7 +172,7 @@
     "date": "2026-02-04",
     "thumbs_up": 8,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -186,7 +182,7 @@
     "date": "2026-02-23",
     "thumbs_up": 7,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -196,7 +192,8 @@
     "date": "2026-02-04",
     "thumbs_up": 7,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches",
+      "Poor Customer Support"
     ]
   },
   {
@@ -206,7 +203,7 @@
     "date": "2026-02-25",
     "thumbs_up": 6,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -216,7 +213,7 @@
     "date": "2026-03-09",
     "thumbs_up": 5,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -226,7 +223,7 @@
     "date": "2026-03-07",
     "thumbs_up": 5,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -236,7 +233,7 @@
     "date": "2026-03-05",
     "thumbs_up": 5,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -246,7 +243,7 @@
     "date": "2026-02-24",
     "thumbs_up": 5,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -256,7 +253,7 @@
     "date": "2026-02-03",
     "thumbs_up": 5,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -266,7 +263,7 @@
     "date": "2026-03-16",
     "thumbs_up": 4,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -276,7 +273,7 @@
     "date": "2026-02-26",
     "thumbs_up": 4,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -286,7 +283,7 @@
     "date": "2026-02-24",
     "thumbs_up": 4,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -296,7 +293,7 @@
     "date": "2026-02-23",
     "thumbs_up": 4,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -306,7 +303,7 @@
     "date": "2026-02-11",
     "thumbs_up": 4,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -316,7 +313,7 @@
     "date": "2026-02-07",
     "thumbs_up": 4,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -326,7 +323,7 @@
     "date": "2026-02-07",
     "thumbs_up": 4,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -336,7 +333,48 @@
     "date": "2026-02-01",
     "thumbs_up": 4,
     "themes": [
-      "App Performance"
+      "Poor Customer Support"
+    ]
+  },
+  {
+    "review_id": "6e9d0b8b-b17f-42e1-a238-370ca0df5442",
+    "rating": 1,
+    "text": "I am not able to access external mutual fund data. I have followed the scan‑code steps more than 10 times. It always results in an error. I am getting frustrated due to this issue. Kindly resolve it at the earliest.",
+    "date": "2026-03-13",
+    "thumbs_up": 3,
+    "themes": [
+      "Data Accuracy and Portfolio Tracking"
+    ]
+  },
+  {
+    "review_id": "73d255f0-d1f7-4736-8beb-3a34fda1097c",
+    "rating": 1,
+    "text": "the refresh option of external portfolio has become absurd. earlier it was just an OTP and it automatically refreshed. now some QR code is generated and it has to be uploaded in the call function please revert back to the previous option",
+    "date": "2026-03-10",
+    "thumbs_up": 3,
+    "themes": [
+      "User Interface and User Experience"
+    ]
+  },
+  {
+    "review_id": "f318246c-4afb-4f4c-8ac0-bc39a916e39c",
+    "rating": 1,
+    "text": "we didn't recommend to use this Application for trading in us market because they didn't provide any other option to add money his have a limited option 1. ICICI HDFC, AND FEDERAL BANK THEY not have UPI and any other bank like SBI , BOB , PNB, Etc",
+    "date": "2026-03-09",
+    "thumbs_up": 3,
+    "themes": [
+      "Fees and Charges"
+    ]
+  },
+  {
+    "review_id": "8edb2987-d756-4a7b-b290-4a168791d9be",
+    "rating": 1,
+    "text": "bhai log ye app third class se bhi ghatiya hai,,, krupaya aap log iss app se trading na karo bahut hi lagg karta hai... aap apna capital mat gamao... mene mera sara SIP cancel kar diya hu... capital gavana chahte ho to please please iss app se trading mat karo... it's my humble request for all traders....",
+    "date": "2026-03-05",
+    "thumbs_up": 3,
+    "themes": [
+      "Fees and Charges",
+      "Poor Customer Support"
     ]
   },
   {
@@ -346,7 +384,7 @@
     "date": "2026-03-04",
     "thumbs_up": 3,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -356,7 +394,7 @@
     "date": "2026-02-25",
     "thumbs_up": 3,
     "themes": [
-      "App Performance"
+      "Data Accuracy and Portfolio Tracking"
     ]
   },
   {
@@ -366,7 +404,7 @@
     "date": "2026-02-17",
     "thumbs_up": 3,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -376,7 +414,7 @@
     "date": "2026-02-08",
     "thumbs_up": 3,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -386,7 +424,7 @@
     "date": "2026-02-01",
     "thumbs_up": 3,
     "themes": [
-      "App Performance"
+      "Fees and Charges"
     ]
   },
   {
@@ -396,7 +434,7 @@
     "date": "2026-01-31",
     "thumbs_up": 3,
     "themes": [
-      "App Performance"
+      "Fees and Charges"
     ]
   },
   {
@@ -406,7 +444,7 @@
     "date": "2026-01-29",
     "thumbs_up": 3,
     "themes": [
-      "App Performance"
+      "Poor Customer Support"
     ]
   },
   {
@@ -416,47 +454,7 @@
     "date": "2026-01-28",
     "thumbs_up": 3,
     "themes": [
-      "App Performance"
-    ]
-  },
-  {
-    "review_id": "29e7b96d-7f05-4dfe-9774-c6839a12891f",
-    "rating": 1,
-    "text": "very poor customer care. if your money is stuck,u will be no where . no agent to talk to you. just automated response. I suggest use another app for us investment. all paid promotion going on to trap customers.",
-    "date": "2026-01-27",
-    "thumbs_up": 3,
-    "themes": [
-      "App Performance"
-    ]
-  },
-  {
-    "review_id": "6e9d0b8b-b17f-42e1-a238-370ca0df5442",
-    "rating": 1,
-    "text": "I am not able to access external mutual fund data. I have followed the scan‑code steps more than 10 times. It always results in an error. I am getting frustrated due to this issue. Kindly resolve it at the earliest.",
-    "date": "2026-03-13",
-    "thumbs_up": 2,
-    "themes": [
-      "App Performance"
-    ]
-  },
-  {
-    "review_id": "73d255f0-d1f7-4736-8beb-3a34fda1097c",
-    "rating": 1,
-    "text": "the refresh option of external portfolio has become absurd. earlier it was just an OTP and it automatically refreshed. now some QR code is generated and it has to be uploaded in the call function please revert back to the previous option",
-    "date": "2026-03-10",
-    "thumbs_up": 2,
-    "themes": [
-      "App Performance"
-    ]
-  },
-  {
-    "review_id": "f318246c-4afb-4f4c-8ac0-bc39a916e39c",
-    "rating": 1,
-    "text": "we didn't recommend to use this Application for trading in us market because they didn't provide any other option to add money his have a limited option 1. ICICI HDFC, AND FEDERAL BANK THEY not have UPI and any other bank like SBI , BOB , PNB, Etc",
-    "date": "2026-03-09",
-    "thumbs_up": 2,
-    "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -466,7 +464,7 @@
     "date": "2026-03-05",
     "thumbs_up": 2,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -476,7 +474,7 @@
     "date": "2026-02-27",
     "thumbs_up": 2,
     "themes": [
-      "App Performance"
+      "Poor Customer Support"
     ]
   },
   {
@@ -486,7 +484,7 @@
     "date": "2026-02-24",
     "thumbs_up": 2,
     "themes": [
-      "App Performance"
+      "Data Accuracy and Portfolio Tracking"
     ]
   },
   {
@@ -496,7 +494,7 @@
     "date": "2026-02-24",
     "thumbs_up": 2,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -506,7 +504,7 @@
     "date": "2026-02-16",
     "thumbs_up": 2,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -516,7 +514,7 @@
     "date": "2026-02-15",
     "thumbs_up": 2,
     "themes": [
-      "App Performance"
+      "Data Accuracy and Portfolio Tracking"
     ]
   },
   {
@@ -526,7 +524,7 @@
     "date": "2026-02-11",
     "thumbs_up": 2,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -536,7 +534,7 @@
     "date": "2026-02-08",
     "thumbs_up": 2,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -546,7 +544,7 @@
     "date": "2026-02-04",
     "thumbs_up": 2,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -556,7 +554,7 @@
     "date": "2026-02-02",
     "thumbs_up": 2,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -566,27 +564,37 @@
     "date": "2026-02-02",
     "thumbs_up": 2,
     "themes": [
-      "App Performance"
-    ]
-  },
-  {
-    "review_id": "ffe18d87-7efe-483d-a0a2-4695571ac666",
-    "rating": 1,
-    "text": "why do you need access to my email? there is too much of personal information you are asking for, there should be an option to proceed without email access, but your app is not allowing that",
-    "date": "2026-01-26",
-    "thumbs_up": 2,
-    "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
     "review_id": "855d936d-8ddc-4889-97b0-acec908ce77e",
-    "rating": 2,
-    "text": "Hate the new update. All the options that used to pop up when you clicked on NPS (Bank savings, EPF etc) are gone. Those were my favourite portfolio tracking features. The net worth page isn't as clear as those features were. Idk why apps mess with perfection. Also, my EPF account doesn't connect no matter how much I try. Kindly provide manual tracking option for EPF type things so that we can track in some manner at least. And pls provide more clarity on when MF NAV are updated daily. Thanks.",
+    "rating": 4,
+    "text": "Edit: The team was very responsive in addressing my queries. The app is amazing, works smoothly, integrates every kind of investment asset into one place, and acts as a complete net worth tracker. Would have been better if there was more clarity on when mutual fund NAVs are updated daily and if we had the option to hold funds in SOA format instead of just demat format. Nevertheless, a great platform!",
+    "date": "2026-03-24",
+    "thumbs_up": 1,
+    "themes": [
+      "Technical Issues and Glitches"
+    ]
+  },
+  {
+    "review_id": "daa703d7-ac24-427b-9556-cdbe77cd6652",
+    "rating": 1,
+    "text": "A new ticket (3153991) has been raised regarding my unresolved issue. My previous tickets (3132454 and 3150933) were closed without any resolution. Order ID291192,Amount: ₹50,000 (UTI Retirement Solution Fund )Order Date: 22 Feb2026 Unit Allot Date: 24 Feb Despite the unit allotment being completed, nothing happened. your team asked for 1 more week given that. Now on Monday see you in court.",
+    "date": "2026-03-20",
+    "thumbs_up": 1,
+    "themes": [
+      "Poor Customer Support"
+    ]
+  },
+  {
+    "review_id": "0d1958be-f969-4c48-ab13-5d24e6fafa1b",
+    "rating": 1,
+    "text": "it was better when they had zero brokerage for US stocks but now they are charging us 0.50% of the trade value per trade + other charges + 0.38% extra charges if the stock price is below 1$ + gst.",
     "date": "2026-03-19",
     "thumbs_up": 1,
     "themes": [
-      "App Performance"
+      "Fees and Charges"
     ]
   },
   {
@@ -596,17 +604,7 @@
     "date": "2026-03-12",
     "thumbs_up": 1,
     "themes": [
-      "App Performance"
-    ]
-  },
-  {
-    "review_id": "c83a3266-507f-4fb4-b59d-13f67d13c5a6",
-    "rating": 1,
-    "text": "I am very disappointed with the service of INDmoney. Today my shares were sold without any prior information or notification. I did not receive any message, email, or alert before this transaction happened. As a user, I expect transparency and proper communication regarding my investments. Selling shares without informing the account holder creates confusion and loss of trust. I request the INDmoney team to explain why this happened and make sure such actions are not taken without informing th",
-    "date": "2026-03-11",
-    "thumbs_up": 1,
-    "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -616,7 +614,7 @@
     "date": "2026-03-07",
     "thumbs_up": 1,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -626,7 +624,7 @@
     "date": "2026-03-05",
     "thumbs_up": 1,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -636,7 +634,7 @@
     "date": "2026-03-02",
     "thumbs_up": 1,
     "themes": [
-      "App Performance"
+      "Data Accuracy and Portfolio Tracking"
     ]
   },
   {
@@ -646,7 +644,7 @@
     "date": "2026-03-01",
     "thumbs_up": 1,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -656,7 +654,7 @@
     "date": "2026-02-24",
     "thumbs_up": 1,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -666,7 +664,7 @@
     "date": "2026-02-15",
     "thumbs_up": 1,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -676,7 +674,7 @@
     "date": "2026-02-11",
     "thumbs_up": 1,
     "themes": [
-      "App Performance"
+      "Poor Customer Support"
     ]
   },
   {
@@ -686,7 +684,7 @@
     "date": "2026-02-04",
     "thumbs_up": 1,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -696,7 +694,7 @@
     "date": "2026-02-03",
     "thumbs_up": 1,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -706,7 +704,7 @@
     "date": "2026-02-03",
     "thumbs_up": 1,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -716,17 +714,38 @@
     "date": "2026-01-29",
     "thumbs_up": 1,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
-    "review_id": "daa703d7-ac24-427b-9556-cdbe77cd6652",
+    "review_id": "7f62e399-1682-49be-abd2-7dfa7d04104b",
     "rating": 1,
-    "text": "A new ticket (3153991) has been raised regarding my unresolved issue. My previous tickets (3132454 and 3150933) were closed without any resolution. Order ID291192,Amount: ₹50,000 (UTI Retirement Solution Fund )Order Date: 22 Feb2026 Unit Allot Date: 24 Feb Despite the unit allotment being completed, nothing happened. your team asked for 1 more week given that. Now on Monday see you in court.",
-    "date": "2026-03-20",
+    "text": "I tried to sell a stock to book the profit I had made, but it was not sold. As predicted, the company’s value went down, and now I have a loss of ₹25,000 on it, and it is still not sold.”",
+    "date": "2026-03-23",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
+    ]
+  },
+  {
+    "review_id": "aba1843e-8740-4698-b67e-6de34f85f837",
+    "rating": 5,
+    "text": "Previously I provided 1 star due to clutter in the UI/UX experience but within a couple of days, I received a call from Mr.Chetan from the design department, and he collected all my feedback and provided assurance that all the changes will be implemented soon. I haven't seen any company that is contacting the customer and really trying to improve their platform. Kudos to Chetan for listening to the customer. and also it's good app to use Ind stocks, US stocks and MF at single unified platform.",
+    "date": "2026-03-23",
+    "thumbs_up": 0,
+    "themes": [
+      "Technical Issues and Glitches"
+    ]
+  },
+  {
+    "review_id": "22a83ecf-83e4-4e19-8a89-9698aa2d62be",
+    "rating": 1,
+    "text": "Worst trading app experience. Frequent crashes caused major losses. On [PHONE], I placed an order at ₹66 with stop-loss ₹59, but it failed to trigger. I had to exit manually at ₹49.65. Orders often don’t appear on charts. Highly unreliable—do not use for trading. I also escalate the same to SEBI too",
+    "date": "2026-03-23",
+    "thumbs_up": 0,
+    "themes": [
+      "Technical Issues and Glitches",
+      "Poor Customer Support"
     ]
   },
   {
@@ -736,27 +755,7 @@
     "date": "2026-03-20",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
-    ]
-  },
-  {
-    "review_id": "6c141543-4524-41b7-b259-490076e77452",
-    "rating": 1,
-    "text": "The interface is very much cluttered and font size is kind of very bigger. it's good to track india stock, US stocks and Mutual fund all in one place which is good but it doesn't provide rich UI. Please check all your competitors UI like Zerodha, Groww where you feel so much difference. The font is too much bigger and UI is very bad. also, the website is even worse since most of the options are not there at all.",
-    "date": "2026-03-20",
-    "thumbs_up": 0,
-    "themes": [
-      "App Performance"
-    ]
-  },
-  {
-    "review_id": "0d1958be-f969-4c48-ab13-5d24e6fafa1b",
-    "rating": 1,
-    "text": "it was better when they had zero brokerage for US stocks but now they are charging us 0.50% of the trade value per trade + other charges + 0.38% extra charges if the stock price is below 1$ + gst.",
-    "date": "2026-03-19",
-    "thumbs_up": 0,
-    "themes": [
-      "App Performance"
+      "Poor Customer Support"
     ]
   },
   {
@@ -766,7 +765,7 @@
     "date": "2026-03-19",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -776,7 +775,7 @@
     "date": "2026-03-18",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Fees and Charges"
     ]
   },
   {
@@ -786,7 +785,7 @@
     "date": "2026-03-18",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Poor Customer Support"
     ]
   },
   {
@@ -796,7 +795,7 @@
     "date": "2026-03-17",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Poor Customer Support"
     ]
   },
   {
@@ -806,17 +805,7 @@
     "date": "2026-03-16",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
-    ]
-  },
-  {
-    "review_id": "4f7b3d4a-f07d-439d-a71d-389b84959ebf",
-    "rating": 3,
-    "text": "Working good till now. Reduced the rating as they have tied with SBM Bank which is a pain. Am trying to close the account, they neither respond to email nor getting them over calls is easy. We have to take action and get this bank closed.",
-    "date": "2026-03-16",
-    "thumbs_up": 0,
-    "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -826,7 +815,7 @@
     "date": "2026-03-15",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -836,7 +825,7 @@
     "date": "2026-03-15",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -846,7 +835,7 @@
     "date": "2026-03-11",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Fees and Charges"
     ]
   },
   {
@@ -856,7 +845,7 @@
     "date": "2026-03-10",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -866,7 +855,7 @@
     "date": "2026-03-06",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Fees and Charges"
     ]
   },
   {
@@ -876,7 +865,7 @@
     "date": "2026-03-05",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -886,7 +875,7 @@
     "date": "2026-03-05",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -896,7 +885,7 @@
     "date": "2026-03-04",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -906,7 +895,7 @@
     "date": "2026-03-03",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Poor Customer Support"
     ]
   },
   {
@@ -916,7 +905,7 @@
     "date": "2026-03-01",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Poor Customer Support"
     ]
   },
   {
@@ -926,7 +915,7 @@
     "date": "2026-03-01",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Fees and Charges"
     ]
   },
   {
@@ -936,7 +925,7 @@
     "date": "2026-02-25",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches"
     ]
   },
   {
@@ -946,7 +935,7 @@
     "date": "2026-02-17",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Poor Customer Support"
     ]
   },
   {
@@ -956,7 +945,7 @@
     "date": "2026-02-16",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Investment and Trading Features"
     ]
   },
   {
@@ -966,7 +955,7 @@
     "date": "2026-02-16",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -976,7 +965,8 @@
     "date": "2026-02-12",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Technical Issues and Glitches",
+      "Poor Customer Support"
     ]
   },
   {
@@ -986,7 +976,7 @@
     "date": "2026-02-09",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Fees and Charges"
     ]
   },
   {
@@ -996,7 +986,7 @@
     "date": "2026-02-07",
     "thumbs_up": 0,
     "themes": [
-      "App Performance"
+      "Fees and Charges"
     ]
   },
   {
@@ -1006,10 +996,8 @@
     "date": "2026-02-06",
     "thumbs_up": 0,
     "themes": [
-      "User Interface",
-      "Features",
-      "App Performance",
-      "Pricing"
+      "User Interface and User Experience",
+      "Fees and Charges"
     ]
   },
   {
@@ -1019,8 +1007,7 @@
     "date": "2026-02-06",
     "thumbs_up": 0,
     "themes": [
-      "User Interface",
-      "Features"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -1030,7 +1017,7 @@
     "date": "2026-02-06",
     "thumbs_up": 0,
     "themes": [
-      "User Interface"
+      "User Interface and User Experience"
     ]
   },
   {
@@ -1040,8 +1027,8 @@
     "date": "2026-02-05",
     "thumbs_up": 0,
     "themes": [
-      "App Performance",
-      "Pricing"
+      "Technical Issues and Glitches",
+      "Investment and Trading Features"
     ]
   },
   {
@@ -1051,8 +1038,8 @@
     "date": "2026-02-03",
     "thumbs_up": 0,
     "themes": [
-      "Pricing",
-      "App Performance"
+      "Fees and Charges",
+      "Poor Customer Support"
     ]
   },
   {
@@ -1062,8 +1049,9 @@
     "date": "2026-02-02",
     "thumbs_up": 0,
     "themes": [
-      "App Performance",
-      "Customer Support"
+      "Technical Issues and Glitches",
+      "Investment and Trading Features",
+      "Poor Customer Support"
     ]
   },
   {
@@ -1073,8 +1061,8 @@
     "date": "2026-02-02",
     "thumbs_up": 0,
     "themes": [
-      "App Performance",
-      "Customer Support"
+      "Technical Issues and Glitches",
+      "Poor Customer Support"
     ]
   },
   {
@@ -1084,19 +1072,7 @@
     "date": "2026-02-01",
     "thumbs_up": 0,
     "themes": [
-      "Features",
-      "App Performance"
-    ]
-  },
-  {
-    "review_id": "dddf1f98-0803-4104-8656-6ce88c9c2c63",
-    "rating": 4,
-    "text": "This is the best app in India to buy us equities, I would love to give 5 star , if ind money would integrate with Trading view for better trading setup , love to see indmoney in trading view setup",
-    "date": "2026-01-28",
-    "thumbs_up": 0,
-    "themes": [
-      "Features",
-      "Positive Experience"
+      "Data Accuracy and Portfolio Tracking"
     ]
   }
 ]

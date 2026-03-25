@@ -68,7 +68,7 @@ class Settings:
         self.email_app_password: str = self._require("EMAIL_APP_PASSWORD")
 
         # --- Optional ---
-        self.port: int = int(os.getenv("PORT", "8000"))
+        self.port: int = int(os.getenv("PORT", "8501"))
 
     # ----- helpers --------------------------------------------------------
 

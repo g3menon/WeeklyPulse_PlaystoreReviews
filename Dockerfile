@@ -19,8 +19,8 @@ COPY . .
 # Create data directory for runtime outputs
 RUN mkdir -p /app/data
 
-# Default port for Railway health checks
-ENV PORT=8000
+# Default port for Streamlit
+ENV PORT=8501
 EXPOSE ${PORT}
 
 # Run the pipeline
