@@ -138,6 +138,14 @@
 | P10A.2 | **Use simple requests/bs4.** Do not introduce bulky dependencies like Playwright or Selenium. If simple requests fail, rely on the fallback. | Keep deployment lightweight, particularly to avoid bloating the Docker image. |
 | P10A.3 | **Read target URL from `config.py`.** The target fund URL must be specified via `FEE_FUND_URL` in `config.py`, not hardcoded in the scraper files. | Improves maintainability and allows for targeting different funds in the future. |
 
+## Phase 10B — Google Docs MCP Appender
+
+| # | Rule | Details |
+|---|------|---------|
+| P10B.1 | **Schema Strictness.** `json_combiner.py` must produce exactly the schema defined in `architecture.md`. | Google Docs MCP expects a consistent formatting. |
+| P10B.2 | **Graceful MCP failure.** Appending to the Doc is an enhancement. If the MCP client fails to invoke, log an error, save the combined JSON locally, and allow the pipeline to complete successfully. | A Google API failure should not mark the whole weekly run as failed. |
+| P10B.3 | **Configurable MCP Server invocation.** The Python MCP Client must NOT hardcode the server command. Read `MCP_GOOGLE_DOCS_SERVER_CMD` and `MCP_GOOGLE_DOCS_SERVER_ARGS` from `.env`. | Allows execution environments to swap to a different MCP backend without code changes. |
+
 ---
 
 ## 📐 Deployment Checklist

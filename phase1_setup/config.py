@@ -47,6 +47,7 @@ REVIEWS_CLEANED_PATH = DATA_DIR / "reviews_cleaned.json"
 REVIEWS_CLASSIFIED_PATH = DATA_DIR / "reviews_classified.json"
 WEEKLY_PULSE_PATH = DATA_DIR / "weekly_pulse.json"
 FEE_EXPLANATION_PATH = DATA_DIR / "fee_explanation.json"
+COMBINED_PULSE_PATH = DATA_DIR / "combined_pulse.json"
 EMAIL_DRAFT_PATH = DATA_DIR / "email_draft.html"
 
 # Phase 10A Config

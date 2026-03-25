@@ -586,25 +586,12 @@ Flow:
 | Extensibility | Manual per-service | **Plug-and-play MCP servers** |
 
 MCP provides a standardised interface for AI agents to interact with external
-tools and services. The Google Docs MCP server handles authentication,
-document management, and content insertion — the pipeline simply calls the
-MCP tool with the combined JSON payload.
+tools and services. Instead of hardcoding API SDK calls, our Python pipeline
+acts as an **MCP Client**. It dynamically executes the external Google Docs
+**MCP Server** via `stdio` (configured securely in `.env`). The Server handles
+auth and documents, and our Client simply asks it to `append_document`.
 
-**MCP Configuration:**
-
-```json
-{
-  "mcpServers": {
-    "google-docs": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-google-docs"],
-      "env": {
-        "GOOGLE_DOCS_CREDENTIALS": "path/to/credentials.json"
-      }
-    }
-  }
-}
-```
+ 
 
 **Google Doc Structure (Append-Only Archive):**
 
@@ -968,10 +955,17 @@ without needing pipeline access or the Streamlit dashboard.
 **MCP Flow:**
 
 ```
-┌─────────────┐     ┌──────────────┐     ┌──────────────┐
-│  Pipeline   │────▶│  MCP Client  │────▶│  MCP Server  │
-│  (Python)   │     │  (tool call) │     │ (Google Docs) │
-└─────────────┘     └──────────────┘     └──────────────┘
+┌────────────────────┐     ┌──────────────────────────────────────────────────┐
+│  Pipeline (Python) │────▶│  MCP Client (mcp SDK)                            │
+│                    │     │  Reads MCP_GOOGLE_DOCS_SERVER_CMD from .env      │
+└────────────────────┘     └──────────────────────────────────────────────────┘
+                                               │
+                                               ▼ (STDIO / Exec)
+                           ┌──────────────────────────────────────────────────┐
+                           │  MCP Server (Google Docs)                        │
+                           │  e.g., node / npx @anthropic/mcp-google-docs     │
+                           │  Uses GOOGLE_DOCS_CREDENTIALS for auth           │
+                           └──────────────────────────────────────────────────┘
                                                │
                                                ▼
                                     ┌──────────────────┐
@@ -980,7 +974,14 @@ without needing pipeline access or the Streamlit dashboard.
                                     └──────────────────┘
 ```
 
-**Environment Variables (new):**
+**Environment Variables (Phase 10B):**
+
+| Variable | Purpose | Default / Example |
+|----------|---------|-------------------|
+| `GOOGLE_DOC_ID` | Target Google Doc ID for archiving | `1A2B3c4D5e...` |
+| `GOOGLE_DOCS_CREDENTIALS` | Path to Google service account JSON | `path/to/credentials.json` |
+| `MCP_GOOGLE_DOCS_SERVER_CMD` | Executable to start the MCP Server | `npx` |
+| `MCP_GOOGLE_DOCS_SERVER_ARGS` | Arguments for the MCP Server proxy | `-y @anthropic/mcp-google-docs` |
 
 | Variable | Purpose | Where to Get |
 |----------|---------|--------------|

@@ -60,7 +60,7 @@ def main() -> None:
     # ------------------------------------------------------------------
     # Phase 10A — Fee Explainer
     # ------------------------------------------------------------------
-    from phase_feeexplainer.fee_scraper import run_fee_scraper
+    from phase10a_fee_explainer.fee_scraper import run_fee_scraper
     logger.info("Phase 10A: Scraping Mutual Fund Fee Details...")
     run_fee_scraper()
     logger.info("Phase 10A: Complete")
@@ -72,6 +72,18 @@ def main() -> None:
     logger.info("Phase 6: Drafting and sending email...")
     send_email()
     logger.info("Phase 6: Complete")
+
+    # ------------------------------------------------------------------
+    # Phase 10B — Combine JSON and Append to Google Docs via MCP
+    # ------------------------------------------------------------------
+    from phase10b_gdocs_mcp.json_combiner import run_json_combiner
+    logger.info("Phase 10B: Combining JSON payload...")
+    run_json_combiner()
+    
+    from phase10b_gdocs_mcp.gdocs_appender import run_mcp_appender
+    logger.info("Phase 10B: Appending to Google Docs via MCP...")
+    run_mcp_appender()
+    logger.info("Phase 10B: Complete")
 
     logger.info("=" * 60)
     logger.info("Pipeline Complete — check your inbox!")
