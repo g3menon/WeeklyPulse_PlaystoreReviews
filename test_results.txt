@@ -3,14 +3,8 @@ platform win32 -- Python 3.11.0, pytest-8.3.3, pluggy-1.6.0
 rootdir: C:\Users\Gayathri\.gemini\antigravity\scratch\GenAIBootcamp_Milestone2\WeeklyPulse_PlaystoreReviews
 plugins: anyio-4.12.1, asyncio-1.3.0
 asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
-collected 32 items
+collected 2 items
 
-tests\test_phase1.py ......                                              [ 18%]
-tests\test_phase2.py .........                                           [ 46%]
-tests\test_phase3.py ..                                                  [ 53%]
-tests\test_phase4.py .....                                               [ 68%]
-tests\test_phase5.py ....                                                [ 81%]
-tests\test_phase6.py ....                                                [ 93%]
-tests\test_phase7.py ..                                                  [100%]
+tests\test_phase10b.py ..                                                [100%]
 
-============================= 32 passed in 9.90s ==============================
+============================== 2 passed in 0.06s ==============================

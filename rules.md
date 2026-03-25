@@ -145,6 +145,7 @@
 | P10B.1 | **Schema Strictness.** `json_combiner.py` must produce exactly the schema defined in `architecture.md`. | Google Docs MCP expects a consistent formatting. |
 | P10B.2 | **Graceful MCP failure.** Appending to the Doc is an enhancement. If the MCP client fails to invoke, log an error, save the combined JSON locally, and allow the pipeline to complete successfully. | A Google API failure should not mark the whole weekly run as failed. |
 | P10B.3 | **Configurable MCP Server invocation.** The Python MCP Client must NOT hardcode the server command. Read `MCP_GOOGLE_DOCS_SERVER_CMD` and `MCP_GOOGLE_DOCS_SERVER_ARGS` from `.env`. | Allows execution environments to swap to a different MCP backend without code changes. |
+| P10B.4 | **MCP Authentication Variables.** Ensure `GOOGLE_APPLICATION_CREDENTIALS` and `SERVICE_ACCOUNT_PATH` are mapped from `GOOGLE_DOCS_CREDENTIALS` in the subprocess environment before invoking the MCP Server. | The `mcp-gdocs` server requires standard Google authentication variable patterns to initiate correctly. |
 
 ---
 
@@ -177,9 +178,11 @@ Phase 6 (Email)     → 6 rules   — Single call, save draft first, Jinja2, sel
 Phase 7 (Dashboard) → 3 rules   — Read JSON, warn if missing, no raw text
 Phase 8 (Docker)    → 3 rules   — Slim image, no baked secrets, gitignore .env
 Phase 9 (Scheduler) → 4 rules   — GitHub Secrets, upload artifacts, manual trigger, timezone awareness (UTC)
+Phase 10A (Fee Expl)→ 3 rules   — Graceful scraping failures, simple requests, unhardcoded target URL
+Phase 10B (GDocs)   → 4 rules   — Schema strictness, graceful failure, configurable invocation, MCP auth mapping
 Global              → 8 rules   — Simplicity, cost control, PII, READMEs, env vars, logging, error handling, pinned deps
 ──────────────────────────────────
-Total               → 50 rules
+Total               → 57 rules
 ```
 
 ---

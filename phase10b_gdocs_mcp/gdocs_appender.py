@@ -37,8 +37,13 @@ async def run_mcp_appender_async():
         return
         
     # Use MCP SDK over Stdio instead of direct API
-    cmd = os.environ.get("MCP_GOOGLE_DOCS_SERVER_CMD", "npx")
-    args_str = os.environ.get("MCP_GOOGLE_DOCS_SERVER_ARGS", "-y @anthropic/mcp-google-docs")
+    cmd = os.environ.get("MCP_GOOGLE_DOCS_SERVER_CMD")
+    args_str = os.environ.get("MCP_GOOGLE_DOCS_SERVER_ARGS")
+    
+    if not cmd or not args_str:
+        logger.error("MCP_GOOGLE_DOCS_SERVER_CMD or MCP_GOOGLE_DOCS_SERVER_ARGS not set in .env. Skipping MCP output.")
+        return
+        
     args = args_str.split() if args_str else []
     
     logger.info(f"Configuring MCP StdioServerParameters for {cmd} {' '.join(args)}...")
@@ -46,6 +51,8 @@ async def run_mcp_appender_async():
     # We pass the active environment + the credentials path 
     env_vars = os.environ.copy()
     env_vars["GOOGLE_DOCS_CREDENTIALS"] = mcp_credentials
+    env_vars["SERVICE_ACCOUNT_PATH"] = mcp_credentials
+    env_vars["GOOGLE_APPLICATION_CREDENTIALS"] = mcp_credentials
     
     server_params = StdioServerParameters(
         command=cmd,
