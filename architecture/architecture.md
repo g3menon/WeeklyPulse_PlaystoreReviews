@@ -6,7 +6,7 @@
 
 ## 1. High-Level System Overview
 
-The system is a **9-phase, linear Python pipeline + Streamlit dashboard** that converts raw Google Play Store reviews into a polished weekly product-health report. No message queues, no complex orchestration — just clean, phase-based execution.
+The system is a **9-phase core pipeline + 2 enhancement features (10A, 10B) + Streamlit dashboard** that converts raw Google Play Store reviews into a polished weekly product-health report, enriched with mutual fund fee explanations and archived to Google Docs via MCP. No message queues, no complex orchestration — just clean, phase-based execution.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -21,14 +21,14 @@ The system is a **9-phase, linear Python pipeline + Streamlit dashboard** that c
 │    .env        Play Store    Regex/NLP     Groq API     Gemini 2.5     Gmail SMTP            │
 │                                            LLaMA 3.3     Flash                               │
 │                                                                                              │
-│  DASHBOARD                                                                                   │
-│  ┌──────────────────────┐                                                                    │
-│  │     Phase 7          │                                                                    │
-│  │  Streamlit Dashboard │                                                                    │
-│  │  (reads data/*.json) │                                                                    │
-│  └──────────────────────┘                                                                    │
-│           │                                                                                  │
-│      http://localhost:8501                                                                    │
+│  DASHBOARD                                   ENHANCEMENTS                                    │
+│  ┌──────────────────────┐                  ┌──────────────┐  ┌──────────────┐              │
+│  │     Phase 7          │                  │  Phase 10A   │  │  Phase 10B   │              │
+│  │  Streamlit Dashboard │                  │  Fee Explain │  │  Google Docs  │             │
+│  │  (reads data/*.json) │                  │  (Exit Load) │  │  (MCP)       │             │
+│  └──────────────────────┘                  └──────────────┘  └──────────────┘              │
+│           │                                      │                   │                       │
+│      http://localhost:8501                   indmoney.com      Google Docs API               │
 │                                                                                              │
 │  DEPLOYMENT                                                                                  │
 │  ┌──────────┐  ┌──────────┐                                                                  │
@@ -54,10 +54,12 @@ The system is a **9-phase, linear Python pipeline + Streamlit dashboard** that c
 | **3** | `phase3_cleaning/` | PII removal & data normalisation | Regex (stdlib) | Phase 2 |
 | **4** | `phase4_themes/` | Theme discovery + review classification | **Groq** (LLaMA 3.3 70B) | Phase 3 |
 | **5** | `phase5_pulse/` | Generate weekly pulse summary | **Gemini 2.5 Flash** | Phase 4 |
-| **6** | `phase6_email/` | Draft HTML email & send via Gmail | **Gemini 2.5 Flash** + SMTP | Phase 5 |
+| **6** | `phase6_email/` | Draft HTML email & send via Gmail | **Gemini 2.5 Flash** + SMTP | Phase 5, 10A |
 | **7** | `phase7_dashboard/` | Interactive Streamlit dashboard | **Streamlit** + Plotly | Phase 5 |
 | **8** | `phase8_docker/` | Docker containerisation | Docker | All |
 | **9** | `phase9_scheduler/` | GitHub Actions cron automation | GitHub Actions | Phase 8 |
+| **10A** | `phase10_fee_explainer/` | Scrape mutual fund exit load & append to email | requests + BeautifulSoup | Phase 5 |
+| **10B** | `phase10_gdocs_mcp/` | Append combined JSON to Google Docs via MCP | MCP (Google Docs) | Phase 5, 10A |
 
 ---
 
@@ -92,7 +94,9 @@ data/
 ├── reviews_raw.json          ← Phase 2 writes  → Phase 3 reads
 ├── reviews_cleaned.json      ← Phase 3 writes  → Phase 4 reads
 ├── reviews_classified.json   ← Phase 4 writes  → Phase 5 reads, Phase 7 reads
-├── weekly_pulse.json         ← Phase 5 writes  → Phase 6, 7 read
+├── weekly_pulse.json         ← Phase 5 writes  → Phase 6, 7, 10B read
+├── fee_explanation.json      ← Phase 10A writes → Phase 6, 10B read
+├── combined_pulse.json       ← Phase 10B writes → Google Docs (MCP append)
 └── email_draft.html          ← Phase 6 writes  (also sends email)
 ```
 
@@ -451,6 +455,180 @@ Secrets:
 
 ---
 
+### Phase 10A — Fee Explanation: Mutual Fund Exit Load
+
+```
+Input:  INDMoney mutual fund page (e.g. HDFC Pharma & Healthcare Fund)
+Output: data/fee_explanation.json
+
+Flow:
+  1. Scrape the INDMoney mutual fund page for exit load details
+     URL pattern: https://www.indmoney.com/mutual-funds/<fund-slug>
+         │
+         ▼
+  2. Parse exit load rules from the fund details section
+         │
+         ▼
+  3. Structure into JSON with explanation bullets
+         │
+         ▼
+  4. Save → data/fee_explanation.json
+
+Output Schema:
+  {
+    "fee_scenario": "Mutual Fund Exit Load",
+    "fund_name": "HDFC Pharma and Healthcare Fund Direct Growth",
+    "explanation_bullets": [
+      "Exit load of 1% if redeemed within 1 year from allotment",
+      "No exit load after 1 year of holding",
+      "Exit load is charged on the NAV at the time of redemption"
+    ],
+    "source_links": [
+      "https://www.indmoney.com/mutual-funds/hdfc-pharma-and-healthcare-fund-direct-growth-1044289"
+    ],
+    "last_checked": "2026-03-25"
+  }
+```
+
+**Integration with Phase 6 Email:**
+
+The email template gains a new section after "Suggested Actions":
+
+```
+── 💰 FEE EXPLANATION ────────────────────────────
+
+📋 Mutual Fund Exit Load
+   Fund: HDFC Pharma and Healthcare Fund Direct Growth
+
+   • Exit load of 1% if redeemed within 1 year from allotment
+   • No exit load after 1 year of holding
+   • Exit load is charged on the NAV at the time of redemption
+
+   🔗 Source: indmoney.com/mutual-funds/...
+```
+
+**Why scrape INDMoney?** The app's own help pages provide the most accurate,
+up-to-date exit load information. Users frequently ask about fees in reviews,
+and proactively including this context helps leadership anticipate support queries.
+
+**Folder:** `phase10_fee_explainer/`
+**Files:** `fee_scraper.py`, `__init__.py`, `README.md`
+
+---
+
+### Phase 10B — Combined JSON to Google Docs (MCP)
+
+```
+Input:  data/weekly_pulse.json + data/fee_explanation.json
+Output: Combined JSON appended to Google Doc via MCP
+
+Flow:
+  1. Load weekly_pulse.json and fee_explanation.json
+         │
+         ▼
+  2. Merge into a single combined_pulse.json:
+     ┌──────────────────────────────────────────┐
+     │  {                                       │
+     │    "date": "2026-03-15",                 │
+     │    "weekly_pulse": {                     │
+     │      "themes": [...],                    │
+     │      "quotes": [...],                    │
+     │      "action_ideas": [...]               │
+     │    },                                    │
+     │    "fee_scenario": "Mutual Fund Exit...",│
+     │    "explanation_bullets": [...],          │
+     │    "source_links": [...],                │
+     │    "last_checked": "2026-03-15"          │
+     │  }                                       │
+     └──────────────────────────────────────────┘
+         │
+         ▼
+  3. Save locally → data/combined_pulse.json
+         │
+         ▼
+  4. Append to Google Doc via MCP:
+     ┌──────────────────────────────────────────┐
+     │  MCP Server: Google Docs                 │
+     │  Action: Append content to document      │
+     │  Document: Weekly Pulse Archive           │
+     │  Content: JSON block for this week       │
+     └──────────────────────────────────────────┘
+```
+
+**Combined JSON Schema:**
+
+```json
+{
+  "date": "2026-03-15",
+  "weekly_pulse": {
+    "themes": ["Theme 1", "Theme 2", "Theme 3"],
+    "quotes": ["Quote 1", "Quote 2", "Quote 3"],
+    "action_ideas": ["Action 1", "Action 2", "Action 3"]
+  },
+  "fee_scenario": "Mutual Fund Exit Load",
+  "explanation_bullets": [
+    "Fact 1...",
+    "Fact 2...",
+    "Fact 3..."
+  ],
+  "source_links": ["Link 1", "Link 2"],
+  "last_checked": "2026-03-15"
+}
+```
+
+**Why MCP (Model Context Protocol)?**
+
+| Aspect | Direct Google Docs API | MCP |
+|--------|----------------------|-----|
+| Auth complexity | OAuth2 service account setup | **MCP server handles auth** |
+| Code to maintain | ~50 lines of API client code | **~10 lines MCP tool call** |
+| Reusability | Custom per-project | **Standardised across AI agents** |
+| Extensibility | Manual per-service | **Plug-and-play MCP servers** |
+
+MCP provides a standardised interface for AI agents to interact with external
+tools and services. The Google Docs MCP server handles authentication,
+document management, and content insertion — the pipeline simply calls the
+MCP tool with the combined JSON payload.
+
+**MCP Configuration:**
+
+```json
+{
+  "mcpServers": {
+    "google-docs": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-google-docs"],
+      "env": {
+        "GOOGLE_DOCS_CREDENTIALS": "path/to/credentials.json"
+      }
+    }
+  }
+}
+```
+
+**Google Doc Structure (Append-Only Archive):**
+
+```
+┌──────────────────────────────────────────────────────┐
+│  📊 INDMoney Weekly Pulse Archive                     │
+│                                                       │
+│  ═══ Week of Mar 15, 2026 ═══════════════════════     │
+│  { combined JSON block }                              │
+│                                                       │
+│  ═══ Week of Mar 08, 2026 ═══════════════════════     │
+│  { combined JSON block }                              │
+│                                                       │
+│  ═══ Week of Mar 01, 2026 ═══════════════════════     │
+│  { combined JSON block }                              │
+│  ...                                                  │
+└──────────────────────────────────────────────────────┘
+```
+
+**Folder:** `phase10_gdocs_mcp/`
+**Files:** `gdocs_appender.py`, `json_combiner.py`, `__init__.py`, `README.md`
+
+---
+
 ## 5. LLM Interaction Design
 
 ```mermaid
@@ -479,6 +657,9 @@ flowchart LR
 | 4 | Phase 6 | **Gemini** | `gemini-2.5-flash` | 1 | Polish email prose |
 
 **Total LLM calls per run: 4–5 · ~30K tokens**
+
+> **Note:** Phase 10A (Fee Explainer) and Phase 10B (Google Docs MCP) do **not** use LLM calls.
+> Phase 10A uses web scraping (requests + BeautifulSoup). Phase 10B uses MCP tool calls.
 
 ### Token Budget Estimate
 
@@ -544,6 +725,17 @@ WeeklyPulse_PlaystoreReviews/
 ├── phase9_scheduler/                    # Phase 9: GitHub Actions (docs)
 │   └── README.md
 │
+├── phase10_fee_explainer/               # Phase 10A: Fee Explanation
+│   ├── README.md
+│   ├── __init__.py
+│   └── fee_scraper.py                   # Scrape MF exit load from INDMoney
+│
+├── phase10_gdocs_mcp/                   # Phase 10B: Google Docs MCP
+│   ├── README.md
+│   ├── __init__.py
+│   ├── json_combiner.py                 # Merge pulse + fee into combined JSON
+│   └── gdocs_appender.py               # Append combined JSON to Google Docs via MCP
+│
 ├── .streamlit/
 │   └── config.toml                      # Streamlit theme config
 │
@@ -554,16 +746,20 @@ WeeklyPulse_PlaystoreReviews/
 ├── architecture/
 │   └── architecture.md                  # This document
 │
-├── rules.md                                 # 📏 Rules & guardrails (48 rules, per-phase)
+├── rules.md                                 # 📏 Rules & guardrails (50+ rules, per-phase)
 │
 ├── tests/
-│   └── test_phase1.py                   # Phase 1 test suite
+│   ├── test_phase1.py                   # Phase 1 test suite
+│   ├── test_phase10a.py                 # Phase 10A test suite
+│   └── test_phase10b.py                 # Phase 10B test suite
 │
 ├── data/                                # Runtime outputs (gitignored)
 │   ├── reviews_raw.json
 │   ├── reviews_cleaned.json
 │   ├── reviews_classified.json
 │   ├── weekly_pulse.json
+│   ├── fee_explanation.json
+│   ├── combined_pulse.json
 │   └── email_draft.html
 │
 ├── Dockerfile
@@ -635,6 +831,9 @@ flowchart TD
 | Phase 6 | SMTP auth failure | Save draft locally; log error |
 | Phase 7 | JSON files not found | Streamlit shows "Run pipeline first" warning |
 | Phase 9 | GitHub Actions failure | GitHub email notification; manual re-trigger |
+| Phase 10A | INDMoney page 403/timeout | Use cached `fee_explanation.json`; log warning. Email renders without fee section if no data. |
+| Phase 10B | MCP server unavailable | Save `combined_pulse.json` locally; skip Google Docs append. Log error. |
+| Phase 10B | Google Docs auth failure | Log error; pipeline continues (append is non-critical). |
 
 ---
 
@@ -644,7 +843,7 @@ flowchart TD
 
 ```bash
 python main.py
-# Runs: Phase 1 → 2 → 3 → 4 → 5 → 6 (email sent)
+# Runs: Phase 1 → 2 → 3 → 4 → 5 → 10A → 6 → 10B (email sent + Google Doc updated)
 ```
 
 ### Mode 2 — Dashboard (Streamlit)
@@ -695,4 +894,99 @@ gantt
     Phase 7 - Streamlit Start   :90, 95
 ```
 
-**Typical execution time: ~90 seconds for pipeline + instant Streamlit start**
+**Typical execution time: ~95 seconds for pipeline (incl. fee scrape + MCP append) + instant Streamlit start**
+
+---
+
+## 12. New Feature Details
+
+### 12.1 Fee Explanation — Mutual Fund Exit Load (Phase 10A)
+
+```mermaid
+flowchart LR
+    A["INDMoney\nMutual Fund Page"] -->|"requests +\nBeautifulSoup"| B["Phase 10A:\nFee Scraper"]
+    B -->|"fee_explanation.json"| C["Phase 6: Email"]
+    B -->|"fee_explanation.json"| D["Phase 10B:\nJSON Combiner"]
+
+    style A fill:#4285F4,color:#fff
+    style B fill:#F59E0B,color:#fff
+    style C fill:#10B981,color:#fff
+    style D fill:#8B5CF6,color:#fff
+```
+
+**Purpose:** Users frequently ask about mutual fund fees in Play Store reviews.
+By proactively scraping exit load details from INDMoney's own fund pages,
+the weekly pulse email can include a "Fee Explanation" section that helps
+leadership anticipate and address fee-related support queries.
+
+**Email Integration:**
+
+```
+┌─────────────────────────────────────────────────────┐
+│  ... (existing email sections) ...                  │
+│                                                     │
+│  ── 💰 FEE EXPLANATION ─────────────────────────    │
+│  ┌ Fee Card (amber accent, left border) ──────────┐ │
+│  │ 📋 Mutual Fund Exit Load                       │ │
+│  │ Fund: HDFC Pharma and Healthcare Fund          │ │
+│  │                                                 │ │
+│  │ • Exit load of 1% if redeemed within 1 year    │ │
+│  │ • No exit load after 1 year of holding         │ │
+│  │ • Charged on NAV at time of redemption         │ │
+│  │                                                 │ │
+│  │ 🔗 Source: indmoney.com/mutual-funds/...        │ │
+│  └─────────────────────────────────────────────────┘ │
+│                                                     │
+│  ... (footer) ...                                   │
+└─────────────────────────────────────────────────────┘
+```
+
+**Configurable Fund URL:** The target fund URL is stored in `config.py`
+as `FEE_FUND_URL`, making it easy to change the fund being tracked
+without modifying scraper logic.
+
+---
+
+### 12.2 Combined JSON to Google Docs via MCP (Phase 10B)
+
+```mermaid
+flowchart TD
+    A["weekly_pulse.json"] --> C["JSON Combiner"]
+    B["fee_explanation.json"] --> C
+    C -->|"combined_pulse.json"| D["MCP: Google Docs"]
+    D -->|"Append"| E["Google Doc:\nWeekly Pulse Archive"]
+
+    style C fill:#8B5CF6,color:#fff
+    style D fill:#4285F4,color:#fff
+    style E fill:#34A853,color:#fff
+```
+
+**Purpose:** Create a persistent, shareable archive of all weekly pulse reports
+in a Google Doc. Leadership and stakeholders can access the full history
+without needing pipeline access or the Streamlit dashboard.
+
+**MCP Flow:**
+
+```
+┌─────────────┐     ┌──────────────┐     ┌──────────────┐
+│  Pipeline   │────▶│  MCP Client  │────▶│  MCP Server  │
+│  (Python)   │     │  (tool call) │     │ (Google Docs) │
+└─────────────┘     └──────────────┘     └──────────────┘
+                                               │
+                                               ▼
+                                    ┌──────────────────┐
+                                    │  Google Docs API │
+                                    │  (append content)│
+                                    └──────────────────┘
+```
+
+**Environment Variables (new):**
+
+| Variable | Purpose | Where to Get |
+|----------|---------|--------------|
+| `GOOGLE_DOCS_CREDENTIALS` | Path to Google service account JSON | [Google Cloud Console](https://console.cloud.google.com) |
+| `GOOGLE_DOC_ID` | Target Google Doc ID for archiving | Create a Google Doc, copy ID from URL |
+| `FEE_FUND_URL` | INDMoney mutual fund page URL to scrape | [indmoney.com/mutual-funds](https://www.indmoney.com/mutual-funds) |
+
+**Applicable Rules:** All global rules (G1–G8) apply. New feature-specific rules
+should be added to `rules.md` under Phase 10A and Phase 10B sections.
