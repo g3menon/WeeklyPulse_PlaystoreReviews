@@ -1,0 +1,27 @@
+{
+  "date": "2026-03-26",
+  "weekly_pulse": {
+    "themes": [
+      "Technical Issues and Glitches",
+      "User Interface and User Experience",
+      "Poor Customer Support",
+      "Investment and Trading Features"
+    ],
+    "quotes": [
+      "Could not generate quotes due to API error."
+    ],
+    "action_ideas": [
+      "Review API integration"
+    ]
+  },
+  "fee_scenario": "Mutual Fund Exit Load",
+  "explanation_bullets": [
+    "Exit load of 1% if redeemed within 1 year from allotment",
+    "No exit load after 1 year of holding",
+    "Exit load is charged on the NAV at the time of redemption"
+  ],
+  "source_links": [
+    "https://www.indmoney.com/mutual-funds/hdfc-pharma-and-healthcare-fund-direct-growth-1044289"
+  ],
+  "last_checked": "2026-03-25"
+}

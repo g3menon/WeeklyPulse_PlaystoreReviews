@@ -63,27 +63,41 @@ An **AI-powered insights platform** comprising:
   Google Play Store
         │
         ▼
-  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐
+  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐
   │ Phase 2  │─▶│ Phase 3  │─▶│ Phase 4  │─▶│ Phase 5  │─▶│ Phase 6  │──▶ 📧
   │ Scrape   │  │ Clean    │  │ Themes   │  │ Pulse    │  │ Email    │
   │          │  │ PII Strip│  │ (Groq)   │  │(Gemini)  │  │ (Gmail)  │
   └──────────┘  └──────────┘  └──────────┘  └──────────┘  └──────────┘
                                                   │
                                                   ▼
-                                          ┌──────────────┐
-                                          │   Phase 7    │──▶ 🌐
-                                          │  Streamlit   │
-                                          │  Dashboard   │
-                                          └──────────────┘
+                                 ┌───────────────────────────────────┐
+                                 │       ┌──────────────┐            │
+                                 │       │   Phase 7    │──▶ 🌐      │
+                                 │       │  Streamlit   │            │
+                                 │       │  Dashboard   │            │
+                                 │       └──────────────┘            │
+                                 │                                   │
+                                 │       ┌──────────────┐            │
+                                 │       │  Phase 10A   │            │
+                                 │       │ Fee Explainer│            │
+                                 │       └──────────────┘            │
+                                 │              │                    │
+                                 │              ▼                    │
+                                 │       ┌──────────────┐            │
+                                 │       │  Phase 10B   │──▶ 📄      │
+                                 │       │ Google Docs  │   (MCP)    │
+                                 │       └──────────────┘            │
+                                 └───────────────────────────────────┘
 ```
 
 > **Phase 1** handles setup · **Phase 8** containerises with Docker · **Phase 9** schedules via GitHub Actions
+> **Phase 10A** scrapes exit load fees · **Phase 10B** archives data to Google Docs via MCP
 
 📄 **Full architecture →** [`architecture/architecture.md`](architecture/architecture.md)
 
 ---
 
-## 📁 9-Phase Project Structure
+## 📁 11-Phase Project Structure
 
 ```
 WeeklyPulse_PlaystoreReviews/
@@ -99,6 +113,8 @@ WeeklyPulse_PlaystoreReviews/
 ├── phase7_dashboard/                    # 📊 Streamlit interactive dashboard
 ├── phase8_docker/                       # 🐳 Docker containerisation
 ├── phase9_scheduler/                    # ⏰ GitHub Actions cron scheduler
+├── phase10a_fee_explainer/              # 💰 Mutual Fund exit load fees
+├── phase10b_gdocs_mcp/                  # 📄 GDocs MCP archiving
 │
 ├── architecture/                        # 📐 System architecture docs
 ├── tests/                               # 🧪 Test suites

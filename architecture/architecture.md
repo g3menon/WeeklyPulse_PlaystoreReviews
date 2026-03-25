@@ -58,8 +58,8 @@ The system is a **9-phase core pipeline + 2 enhancement features (10A, 10B) + St
 | **7** | `phase7_dashboard/` | Interactive Streamlit dashboard | **Streamlit** + Plotly | Phase 5 |
 | **8** | `phase8_docker/` | Docker containerisation | Docker | All |
 | **9** | `phase9_scheduler/` | GitHub Actions cron automation | GitHub Actions | Phase 8 |
-| **10A** | `phase10_fee_explainer/` | Scrape mutual fund exit load & append to email | requests + BeautifulSoup | Phase 5 |
-| **10B** | `phase10_gdocs_mcp/` | Append combined JSON to Google Docs via MCP | MCP (Google Docs) | Phase 5, 10A |
+| **10A** | `phase10a_fee_explainer/` | Scrape mutual fund exit load & append to email | requests + BeautifulSoup | Phase 5 |
+| **10B** | `phase10b_gdocs_mcp/` | Append combined JSON to Google Docs via MCP | MCP (Google Docs) | Phase 5, 10A |
 
 ---
 
@@ -511,7 +511,7 @@ The email template gains a new section after "Suggested Actions":
 up-to-date exit load information. Users frequently ask about fees in reviews,
 and proactively including this context helps leadership anticipate support queries.
 
-**Folder:** `phase10_fee_explainer/`
+**Folder:** `phase10a_fee_explainer/`
 **Files:** `fee_scraper.py`, `__init__.py`, `README.md`
 
 ---
@@ -611,7 +611,7 @@ auth and documents, and our Client simply asks it to `append_document`.
 └──────────────────────────────────────────────────────┘
 ```
 
-**Folder:** `phase10_gdocs_mcp/`
+**Folder:** `phase10b_gdocs_mcp/`
 **Files:** `gdocs_appender.py`, `json_combiner.py`, `__init__.py`, `README.md`
 
 ---
@@ -712,12 +712,12 @@ WeeklyPulse_PlaystoreReviews/
 ├── phase9_scheduler/                    # Phase 9: GitHub Actions (docs)
 │   └── README.md
 │
-├── phase10_fee_explainer/               # Phase 10A: Fee Explanation
+├── phase10a_fee_explainer/              # Phase 10A: Fee Explanation
 │   ├── README.md
 │   ├── __init__.py
 │   └── fee_scraper.py                   # Scrape MF exit load from INDMoney
 │
-├── phase10_gdocs_mcp/                   # Phase 10B: Google Docs MCP
+├── phase10b_gdocs_mcp/                  # Phase 10B: Google Docs MCP
 │   ├── README.md
 │   ├── __init__.py
 │   ├── json_combiner.py                 # Merge pulse + fee into combined JSON

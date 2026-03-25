@@ -1,0 +1,6 @@
+1. https://play.google.com/store/apps/details?id=in.indwealth (INDmoney Google Play Store app link)
+2. https://play.google.com/store/apps (Google Play Store base URL)
+3. https://www.indmoney.com/mutual-funds/hdfc-pharma-and-healthcare-fund-direct-growth-1044289 (INDMoney Mutual Fund Page used in Phase 10a)
+4. https://console.groq.com (Groq API console)
+5. https://ai.google.dev (Google AI Studio for Gemini API)
+6. https://docs.streamlit.io (Streamlit Documentation)
