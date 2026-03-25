@@ -203,7 +203,7 @@ def main():
             # Remove axis labels to keep it clean
             fig.update_xaxes(title_text="", showgrid=False, showticklabels=False)
             fig.update_yaxes(title_text="")
-            st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+            st.plotly_chart(fig, width="stretch", config={'displayModeBar': False})
 
         st.markdown("<br>", unsafe_allow_html=True)
         st.subheader("💬 What Users Are Saying", anchor=False)
@@ -231,7 +231,7 @@ def main():
         if 'themes' in df_reviews.columns:
             df_reviews['themes'] = df_reviews['themes'].apply(lambda x: ", ".join(x) if isinstance(x, list) else x)
             
-        st.sidebar.dataframe(df_reviews, use_container_width=True, hide_index=True)
+        st.sidebar.dataframe(df_reviews, width="stretch", hide_index=True)
 
 if __name__ == "__main__":
     main()
