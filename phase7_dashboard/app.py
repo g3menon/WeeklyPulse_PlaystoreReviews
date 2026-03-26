@@ -9,6 +9,7 @@ DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
 PULSE_FILE = os.path.join(DATA_DIR, "weekly_pulse.json")
 CLASSIFIED_FILE = os.path.join(DATA_DIR, "reviews_classified.json")
 EMAIL_FILE = os.path.join(DATA_DIR, "email_draft.html")
+FEE_FILE = os.path.join(DATA_DIR, "fee_explanation.json")
 
 st.set_page_config(
     page_title="Weekly Pulse Dashboard",
@@ -111,6 +112,16 @@ def load_data():
         
     return pulse_data, classified_data
 
+def load_fee_data():
+    """Load Phase 10A fee explainer output. Returns None if file is missing."""
+    if not os.path.exists(FEE_FILE):
+        return None
+    try:
+        with open(FEE_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return None
+
 def main():
     pulse_data, classified_data = load_data()
     
@@ -203,7 +214,7 @@ def main():
             # Remove axis labels to keep it clean
             fig.update_xaxes(title_text="", showgrid=False, showticklabels=False)
             fig.update_yaxes(title_text="")
-            st.plotly_chart(fig, width="stretch", config={'displayModeBar': False})
+            st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 
         st.markdown("<br>", unsafe_allow_html=True)
         st.subheader("💬 What Users Are Saying", anchor=False)
@@ -220,18 +231,57 @@ def main():
             </div>
             """, unsafe_allow_html=True)
 
-    # Sidebar: Review Explorer
+    # ── Fee Explainer (Phase 10A) ────────────────────────────────────────────
+    st.divider()
+    st.subheader("💸 Fee Explainer", anchor=False)
+    fee_data = load_fee_data()
+    if fee_data is None:
+        st.info("Fee explainer data not available yet. Run Phase 10A (`python -m phase10a_fee_explainer.fee_scraper`) to generate it.")
+    else:
+        fee_col1, fee_col2 = st.columns([2, 1])
+        with fee_col1:
+            st.markdown(f"""
+            <div style="background:#f8f9fa; border-left:4px solid #764ba2; border-radius:0 8px 8px 0; padding:16px 20px; margin-bottom:12px;">
+                <strong style="color:#764ba2; font-size:15px;">📋 {fee_data.get('fee_scenario', 'Fee Scenario')}</strong><br>
+                <span style="color:#3f3f46; font-size:13px;">Fund: {fee_data.get('fund_name', '—')}</span>
+            </div>
+            """, unsafe_allow_html=True)
+            bullets = fee_data.get("explanation_bullets", [])
+            for bullet in bullets:
+                st.markdown(f"- {bullet}")
+        with fee_col2:
+            links = fee_data.get("source_links", [])
+            last_checked = fee_data.get("last_checked", "—")
+            st.markdown(f"**Last checked:** {last_checked}")
+            if links:
+                st.markdown("**Sources:**")
+                for link in links:
+                    st.markdown(f"- [{link}]({link})")
+
+    # ── Sidebar: Review Explorer ──────────────────────────────────────────────
     st.sidebar.title("🔍 Review Explorer")
     st.sidebar.markdown("Explore anonymised review metadata.")
     if classified_data:
         df_reviews = pd.DataFrame(classified_data)
         if 'text' in df_reviews.columns:
             df_reviews = df_reviews.drop(columns=['text'])
-            
         if 'themes' in df_reviews.columns:
-            df_reviews['themes'] = df_reviews['themes'].apply(lambda x: ", ".join(x) if isinstance(x, list) else x)
-            
-        st.sidebar.dataframe(df_reviews, width="stretch", hide_index=True)
+            df_reviews['themes'] = df_reviews['themes'].apply(
+                lambda x: ", ".join(x) if isinstance(x, list) else x
+            )
+        if df_reviews.empty:
+            st.sidebar.info("No review data available for this period. Run the pipeline or adjust the date range.")
+        else:
+            st.sidebar.dataframe(df_reviews, use_container_width=True, hide_index=True)
+            csv_bytes = df_reviews.to_csv(index=False).encode("utf-8")
+            st.sidebar.download_button(
+                label="⬇️ Download reviews CSV",
+                data=csv_bytes,
+                file_name="indmoney_reviews.csv",
+                mime="text/csv",
+            )
+    else:
+        st.sidebar.info("No review data available. Run the pipeline first.")
 
 if __name__ == "__main__":
     main()
